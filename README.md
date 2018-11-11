@@ -1,2 +1,1 @@
-# F00d33z
-This is the new F00d33z Web App
+This is our new F00d33z web app.
