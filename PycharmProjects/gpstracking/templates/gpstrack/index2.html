@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>orders</title>
+</head>
+<body>
+<form>
+    {%  csrf_token %}
+    order id : <br>
+    <input type="text" name = "orderid" id="orderid" ><br>
+    driver id : <br>
+    <input type="text" name = "driverid" id="driverid" ><br>
+    <input type="submit" value ="submit">
+</form>
+</body>
+</html>

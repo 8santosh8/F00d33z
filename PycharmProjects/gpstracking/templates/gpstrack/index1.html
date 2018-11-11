@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>f00d3zz</title>
+</head>
+<body>
+<form method="post" action="{% url 'index2' %}">
+    {%  csrf_token %}
+    driver id : <br>
+    <input type="text" name = "driverid" id="driverid" ><br>
+    location : <br>
+    <input type="text" name = "location" id="location" ><br>
+    <input type="submit" value ="submit">
+</form>
+</body>
+</html>
