@@ -1,17 +1,27 @@
+{% load static from staticfiles %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>f00d3zz</title>
+    <title>driverPage</title>
+    <link href="{% static "css/index1.css"%}" rel="stylesheet">
 </head>
-<body>
-<form method="post" action="{% url 'index2' %}">
+<body style="background: url({% static "image/flame-broiled-steak_4460x4460.jpg"%} ) no-repeat 10%">
+<form method="POST" action="{% url 'gpstrack.results' %}">
     {%  csrf_token %}
     driver id : <br>
-    <input type="text" name = "driverid" id="driverid" ><br>
+    <input type="text" name = "driverid1" id="driverid1"><br>
     location : <br>
-    <input type="text" name = "location" id="location" ><br>
+    <select name = "location">
+        <option value = "Tada">Tada</option>
+        <option value = "Sricity">Sricity</option>
+        <option value = "Nellore">Nellore</option>
+        <option value = "Sullurpetaa">Sullurpeta</option>
+    </select>
+    <br>
     <input type="submit" value ="submit">
 </form>
+
 </body>
 </html>

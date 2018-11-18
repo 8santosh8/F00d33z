@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+       /* Set the size of the div element that contains the map */
+      #map {
+        height: 400px;  /* The height is 400 pixels */
+        width: 100%;  /* The width is the width of the web page */
+       }
+    </style>
+  </head>
+  <body>
+  <h3>My Google Maps Demo</h3>
+    {{ mapvalue }}
+    <!--The div element for the map -->
+    <div id="map"></div>
+    <script>
+// Initialize and add the
+function initMap() {
+    // The location of Uluru
+    var loca = JSON.parse('{{ json_string | escapejs }}');
+ if (loca == 'Tada'){
+        uluru = {lat: 13.589, lng: 80.033};
+    }   else if (loca == 'Sullurpeta'){
+        uluru = {lat: 13.699, lng: 80.021};
+    }   else if (loca == 'Nellore') {
+        uluru = {lat: 14.442, lng: 79.986};
+    }   else if (loca == 'Sricity'){
+        uluru = {lat: 13.580, lng: 80.040};
+    }
+
+    //var uluru = {lat: -25.344, lng: 131.036};
+  // The map, centered at Uluru
+  var map = new google.maps.Map(
+      document.getElementById('map'), {zoom: 10, center: uluru});
+  // The marker, positioned at Uluru
+  var marker = new google.maps.Marker({position: uluru, map: map});
+}
+    </script>
+    <!--Load the API from the specified URL
+    * The async attribute allows the browser to render the page while the API loads
+    * The key parameter will contain your own API key (which is not needed for this tutorial)
+    * The callback parameter executes the initMap() function
+    -->
+    <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYl3jkGGMzayse2hTeqApY0qanvqXdmaI&callback=initMap">
+    </script>
+  </body>
+</html>
