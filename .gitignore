@@ -145,3 +145,5 @@ bh_unicode_properties.cache
 GitHub.sublime-settings
 .atom
 .idea
+*.pyc
+__pycache__/
