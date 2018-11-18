@@ -147,3 +147,5 @@ GitHub.sublime-settings
 .atom
 .idea
 *.pyc
+*.pyc
+__pycache__
