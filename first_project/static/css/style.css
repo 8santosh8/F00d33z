@@ -1,0 +1,147 @@
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+header {
+  padding: 0px 0;
+  background: repeating-linear-gradient(45deg, #1CF9D8, #f0f2ed 5px, #f8f4eb 11px, #f8f4eb 10px);
+  box-shadow: 0 4px 6px rgba(0,0,0,.2);
+}
+.container {
+  padding: 0 50px;
+  max-width: 2060px;
+  margin: 100 auto;
+}
+.logo-box {
+  float: left;
+  margin-left: -580px;
+}
+.logo-box a {
+  outline: none;
+  display: block;
+}
+.logo-box img {display: block;}
+nav {
+  overflow: hidden;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  float:right;
+  margin-right: 100;
+
+}
+nav li {
+  display: inline-block;
+  margin-left: 50px;
+  height: 100px;
+  line-height: 110px;
+  transition: .5s linear;
+}
+nav a {
+  text-decoration: none;
+  display: block;
+  position: relative;
+  color: #ff0000;
+  text-transform: uppercase;
+}
+nav a:after {
+  content: "";
+  width: 0;
+  height: 2px;
+  position: absolute;
+  left: 0;
+  bottom: 35px;
+  background: #868686;
+  transition: width .25s linear;
+}
+nav a:hover:after {width: 100%;}
+
+@media screen and (max-width: 660px) {
+  header {text-align: center;}
+  .logo-box {
+    float: none;
+    display: inline-block;
+    margin: 0 0 16px 0;
+  }
+  ul {float: none;}
+  nav li:first-of-type {margin-left: 0;}
+}
+@media screen and (max-width: 550px) {
+nav {overflow: visible;}
+nav li {
+  display: block;
+  margin: 0;
+  height: 40px;
+  line-height: 40px;
+}
+nav li:hover {background: rgba(0,0,0,.1);}
+nav a:after {content: none;}
+}
+
+
+@-webkit-keyframes fade {
+    0%{
+      opacity: 1;
+   }
+   8% {
+      opacity:1;
+   }
+   13%{
+      opacity: 0;
+   }
+   95% {
+      opacity:0;
+   }
+   100% {
+      opacity:1;
+   }
+}
+
+.img {
+    position:absolute;
+    width: 100%
+}
+
+.img:nth-child(1) {
+    -webkit-animation: fade 24s 0s infinite;
+    z-index:80;
+}
+
+.img:nth-child(2) {
+    -webkit-animation: fade 24s 3s infinite;
+    z-index:70;
+}
+
+.img:nth-child(3) {
+    -webkit-animation: fade 24s 6s infinite;
+    z-index:60;
+}
+
+.img:nth-child(4) {
+    -webkit-animation: fade 24s 9s infinite;
+    z-index:50;
+}
+
+.img:nth-child(5) {
+    -webkit-animation: fade 24s 12s infinite;
+    z-index:40;
+}
+
+.img:nth-child(6) {
+    -webkit-animation: fade 24s 15s infinite;
+    z-index:30;
+}
+
+.img:nth-child(7) {
+    -webkit-animation: fade 24s 18s infinite;
+    z-index:20;
+}
+
+
+.img:nth-child(8) {
+    -webkit-animation: fade 24s 21s infinite;
+    z-index:10;
+}
