@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Satisfy|Bree+Serif|Candal|PT+Sans">
+  <link href='https://fonts.googleapis.com/css?family=Amarante' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=Eagle Lake' rel='stylesheet'>
+  <link rel="stylesheet" type="text/css" href="{% static "add_item/css,js/add_style.css" %}">
+</head>
+
+<body>
+  <!--banner-->
+  <section id="banner" style="background: url({%static "hotels/images/banner-bg.jpg"%}) no-repeat center top;position:fixed;">
+    <div class="bg-color">
+      <header style="border:1px solid">	
+      </header>       
+    </div>
+  </section>
+  <!-- / banner -->
+
+  <!-- menu -->
+  <section id="menu-list" class="section-padding">
+    <div class="row">
+	   <div class="add-food" style="position:fixed">
+			<div style="padding-left:10%">
+				<h1 class="header-h">Add New Item</h1>
+			</div>
+			
+			<div class="heading" style="position:sticky;top:0;color:black">
+            <span style="font-family:Eagle Lake;margin-left:0%;font-size:30px">Food Items</span>
+			<span style="font-family:Eagle Lake;margin-left:6%;font-size:30px">Item Type</span>
+            <span style="font-family:Eagle Lake;margin-left:12%;font-size:30px">Price</span>
+			<span style="font-family:Eagle Lake;margin-left:20%;font-size:30px">Availability</span>		
+		  </div>
+
+    
+		
+          
+         <div style="margin-top:5%">
+              
+				<input type="text" name="name" style="border:1px solid;border-radius:5px;margin-left:2%">
+				<select name="type" style="border:1px solid;border-radius:5px;margin-left:8%">
+					<option value="type" name="price"  >veg</option>
+					<option value="type" name="price"  >non-veg</option>
+				</select>  
+				<input  type="number" name="price" style="border:1px solid;border-radius:5px;margin-left:17%">				
+				<input type="number" name="available"  style="border:1px solid;border-radius:5px;margin-left:16%"><br>		  
+		 </div>
+		<div class="btn" style="margin-left:0%">
+			<button style="margin-left:0%;margin-top:4%;width:100px;height:30px;" class="btns">Add Item</button>
+		</div>
+        
+		  
+	   </div>
+    </div>
+  </section>
+ 
+  
+</body>
+
+</html>

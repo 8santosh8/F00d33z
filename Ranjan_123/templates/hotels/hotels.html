@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Satisfy|Bree+Serif|Candal|PT+Sans">
+  <link href='https://fonts.googleapis.com/css?family=Amarante' rel='stylesheet'>
+  <link rel="stylesheet" type="text/css" href="{%static  "hotels/css,js/ase1.css"%}">
+    <title>Hotel Details</title>
+</head>
+
+<body>
+  <!--banner-->
+  <section id="banner" style="background: url({%static "hotels/images/banner-bg.jpg"%}) no-repeat center top;">
+    <div class="bg-color">
+      <header id="header">
+
+        <div id="mySidenav" class="sidenav">
+            <a class="closebtn" onclick="closeNav()">&#9932;</a>
+			<a href="home.html">Home</a>
+            <a href="#menu-list">Menu</a>
+			<a href="#contact">Contact</a>
+            <a href="">Log Out</a>
+        </div>
+
+		<span onclick="openNav()" class="menu-icon">&#9776;</span>
+      </header>
+      <div>
+        <div>
+          <div class="inner text-center" style="text-align:center">
+            <h1 class="logo-name">Swathi</h1>
+            <h2>Food To fit your lifestyle & health.</h2>
+            <p>Specialized in both North & South Indian Meals!!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- / banner -->
+
+  <!-- menu -->
+  <section id="menu-list" class="section-padding">
+    <div class="row">
+	   <div class="food-menu">
+        <div>
+          <h1 class="header-h">Menu List</h1>
+        </div>
+
+        <div id="menu-flters">
+          <ul>
+            <li><a class="filter active"  data-filter=".menu-restaurant">Show All</a></li>
+            <li><a class="filter"  data-filter=".veg">Veg</a></li>
+            <li><a class="filter"  data-filter=".non-veg">Non-Veg</a></li>
+          </ul>
+        </div>
+
+
+
+          <div class="veg menu-restaurant">
+            <span class="clearfix">
+              <span style="left: 166px; right: 44px;" class="menu-line"></span>
+              <span class="menu-price">₹120</span>
+            </span>
+            <span class="menu-title">Veg Biryani</span>
+          </div>
+		  <div class="veg menu-restaurant">
+				<button class="btns" >Buy Now</button>
+				<button class="btns" >+Add To Cart</button>
+		  </div>
+
+		  <div class="veg menu-restaurant">
+            <span class="clearfix">
+              <span style="left: 166px; right: 44px;" class="menu-line"></span>
+              <span class="menu-price">₹50</span>
+            </span>
+
+            <span class="menu-title">Steam Rice</span>
+          </div>
+		  <div class="veg menu-restaurant">
+				<button class="btns" >Buy Now</button>
+				<button class="btns" >+Add To Cart</button>
+		  </div>
+
+		  <div class="veg menu-restaurant">
+            <span class="clearfix">
+              <span style="left: 166px; right: 44px;" class="menu-line"></span>
+              <span class="menu-price">₹70</span>
+            </span>
+            <span class="menu-title">Fried Rice</span>
+          </div>
+		  <div class="veg menu-restaurant">
+				<button class="btns" >Buy Now</button>
+				<button class="btns" >+Add To Cart</button>
+		  </div>
+
+          <div class="non-veg menu-restaurant">
+            <span class="clearfix">
+              <span style="left: 166px; right: 44px;" class="menu-line"></span>
+              <span class="menu-price">₹160</span>
+            </span>
+            <span class="menu-title">Butter Chicken</span>
+          </div>
+		  <div class="non-veg menu-restaurant">
+				<button class="btns" >Buy Now</button>
+				<button class="btns" >+Add To Cart</button>
+		  </div>
+
+		  <div class="non-veg menu-restaurant">
+            <span class="clearfix">
+              <span style="left: 166px; right: 44px;" class="menu-line"></span>
+              <span class="menu-price">₹200</span>
+            </span>
+            <span class="menu-title">Kadaahi Prawn</span>
+          </div>
+		  <div class="non-veg menu-restaurant">
+				<button class="btns" >Buy Now</button>
+				<button class="btns" >+Add To Cart</button>
+		  </div>
+
+		  <div class="non-veg menu-restaurant">
+            <span class="clearfix">
+              <span style="left: 166px; right: 44px;" class="menu-line"></span>
+              <span class="menu-price">₹160</span>
+            </span>
+            <span class="menu-title">Kadaahi Chicken</span>
+          </div>
+		  <div class="non-veg menu-restaurant">
+				<button class="btns" >Buy Now</button>
+				<button class="btns" >+Add To Cart</button>
+		  </div>
+	  </div>
+    </div>
+  </section>
+  <section class="section-padding" id="contact" style="height:200px;background-color:black;>
+		<div class="row">
+			<div style="padding-left:30%">
+				<h1>Swathi</h1>
+				<address>Tada,Chittoor<br>Andhra Pradesh<br>
+				Contact No:64687456748<br>
+				Email:tsfsugya@hjg
+				</address><br>
+			</div>
+		</div>
+  </section>
+
+  <script src="https://code.jquery.com/jquery-2.1.1.js"></script>
+
+  <script src="{% static "hotels/css,js/ase1.js"%}"></script>
+
+</body>
+
+</html>
+        
