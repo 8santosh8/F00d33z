@@ -1,0 +1,149 @@
+body {
+	font-size: 15px;
+    line-height: 1.52;
+    color: #717f86;
+    font-size: 16px;
+	font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+	background-color:#ffffff;
+}
+ol, ul {
+	list-style: none;
+}
+
+.banner {
+	position:absolute;
+	height:120px;
+	background-color:black;
+	top:0;
+	left:0;
+	width:100%;
+}
+
+#nav a:hover{
+	color:white;
+}
+
+.add:hover{
+	color:#BB04BB;
+}
+
+.button{
+	margin-top:10px;
+	margin-bottom:20px;
+}
+
+.button button:hover{
+	color:#BB04BB;
+}
+
+.orders button:hover{
+	color:#BB04BB;
+}
+
+
+.values{
+	font-family:Andika;
+	font-size:20px;
+	border-radius:5px;
+	text-align:center;
+	border:0px;
+}
+
+.orders span{
+	font-family:Andika;
+	margin-left:7%;
+	font-size:20px;
+	float:left;
+}
+
+#menu-list {
+	position:relative;
+}
+
+.bg-color{
+    background-color: RGBA(0, 0, 0, 0.5);
+    min-height: 630px;
+}
+
+.section-padding{
+	position:relative;
+	padding-left:20%;
+    padding: 30px 0px;
+	
+}
+
+#heading {
+	background-color: black;
+	opacity:1;
+	z-index:1;
+	width:1237px;
+	margin-left:10%;
+}
+
+#heading span{
+	color:#ffffff;
+}
+
+
+.logo-name{
+    font-family: 'Satisfy', sans-serif;
+    font-size: 35px;
+    color: #CD853F;
+	margin-left:5%;
+	float:left;
+}
+
+.logout{
+	font-size:24px;
+	margin-left:70%;
+	margin-top:30px;
+	background-color:transparent;
+	border:0px;
+	color:#CD853F;
+}
+
+
+.header-h {
+    color: #BB04BB;
+    font-size: 46px;
+    font-family: Allura;
+    font-weight: 300;
+}
+
+
+.menu button:hover{
+	color:#BB04BB;
+}
+
+.menu{
+	margin-top:20px;
+}
+
+.list{
+	font-family:Amarante;
+	font-size:15px;
+	border-radius:5px;
+	border:1px solid black;
+	background:transparent;
+	text-align:center;
+}
+
+
+.food-menu{
+	margin-left:10%;
+	overflow:scroll;
+	border:5px solid black;
+	width:1227px;
+	margin-right:10%;
+	height:500px;
+	background-color:#ffffff;
+}
+
+.row{
+	margin-right:-15px;
+	margin-left:-15px;
+}
+.row:after{clear:both}
+.row:after,.row:before{display:table;content:" "}

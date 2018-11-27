@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Feedback</title>
+	<style>
+		#submit:hover{color:#BB04BB}
+		#submit{margin-left:45%;background:transparent;border:2px solid;width:80px;height:30px;font-size:20px;border-radius:5px}
+	</style>
+</head>
+
+<body style="background-image:url('back3.jpg');position:absolute">
+	<div style="width:400%;height:500px;margin:20% 20% 30% 20%;position:relative">
+	<form action="" style="margin-left:30%;margin-top:0%" method="POST">
+		<span style="font-size:40px">FEEDBACK FORM</span>
+		<h2>Please rate us (out of 10)<sup>*</sup>:</h2>
+		<input type="number" id="rate" name="rating" style="border-radius:10px;background:transparent;border:2px solid;" required autofocus><br>
+		<h2>Any valuable suggestion:</h2><br>
+		<textarea style="width:50%;height:150px;background:transparent;font-size:20px;border:2px solid;border-radius:10px">
+		</textarea><br>
+		<button type="submit" style="" id="submit" onclick="validate()">Submit</button>
+	</form>
+	</div>
+
+<script>
+	function validate() {
+		var x=document.getElementById('rate').value;
+		if(isNaN(x) || x<0 || x>10) {
+			alert("Please give rating in range 0 to 10");
+		}
+	}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+#heading {
+	background-color: transparent;
+	opacity:1;
+	width:1237px;
+	margin-left:10%;
+}
+
+.food-menu{
+	margin-left:4%;
+	border:0px solid #565656;
+	width:1400px;
+	background-color:#ffffff;
+}
+
+.logo{
+    font-family: 'Satisfy', sans-serif;
+    font-size: 35px;
+    color: #CD853F;
+	margin-left:5%;
+	float:left;
+}
+
+.logout{
+	font-size:24px;
+	background-color:transparent;
+	border:0px;
+	color:#CD853F;
+	pointer:cursor;
+	text-decoration:none;
+}
+
+.nav a:hover{
+	color:white;
+}
+
+div a{
+	font-size:20px;
+	background:transparent;
+	width:150px;
+	color:black;
+}
+
+div a:hover{
+	color:#BB04BB;
+}
+
+.buy{
+	font-family:Andika;
+	font-size:20px;
+	background:transparent;
+	border:0px;
+	border-radius:5px;
+	text-align:center;
+}
+
+.food-menu button:hover{
+	color:#BB04BB;
+}
+
