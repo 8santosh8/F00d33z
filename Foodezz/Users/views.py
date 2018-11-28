@@ -17,7 +17,7 @@ def Register(request):
             newuser = User_Details1.save(commit=False)
             newuser.User = newuser_basic
             newuser.save()
-            return redirect('Users-Home')
+            return redirect('Users-Login')
     else:
         User_Form1 = forms.UserForm()
         User_Details1 = forms.User_Details()
@@ -52,4 +52,17 @@ def Login(request):
 
 @login_required
 def Profile(request):
-    return render(request,'Users/Profile.html',{})
+    if request.method == 'POST':
+        u_form = forms.UserUpdateForm(request.POST, instance=request.user)
+        p_form = forms.ProfileUpdateForm(request.POST, request.FILES, instance=request.user.user_profile)
+
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            messages.success(request, f'Your account has been updated successfully!')
+            return redirect('Users-Profile')
+    else:
+        u_form = forms.UserUpdateForm(instance= request.user)
+        p_form = forms.ProfileUpdateForm(instance= request.user.user_profile)
+
+    return render(request,'Users/Profile.html',{'u_form':u_form,'p_form':p_form})

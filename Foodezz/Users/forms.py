@@ -15,8 +15,19 @@ class User_Details(forms.ModelForm):
 
     class Meta:
         model = UserModels.User_Profile
-        fields = ('phone','address','street','city','pincode',)
+        fields = ('phone','address','street','city','pincode','image')
 
 class C_Login(forms.Form):
     Username = forms.CharField(max_length=30)
     Password = forms.CharField(widget=forms.PasswordInput)
+
+class UserUpdateForm(forms.ModelForm):
+    email = forms.EmailField()
+    class Meta:
+        model = User
+        fields = ('username','first_name','last_name','email')
+
+class ProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model = UserModels.User_Profile
+        fields = ('phone','address','street','city','pincode','image')
