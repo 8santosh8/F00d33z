@@ -31,8 +31,7 @@ urlpatterns = [
     path('Rest_Login/',views.RestLogin,name='Rest-Login'),
 
     ## Path for Login through google api
-    # path('auth-social/',),
-    # path('auth/social/', include('social_django.urls', namespace='social')),
+    path('auth/',include('social_django.urls',namespace='social')),
 ]
 
 if settings.DEBUG:
