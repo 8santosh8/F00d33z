@@ -4,7 +4,6 @@ from Users.forms import C_Login
 from . import forms
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.urls import reverse
 
 def Register(request):
     if(request.method == 'POST'):
