@@ -13,6 +13,10 @@ class UserForm(UserCreationForm):
 
 class User_Details(forms.ModelForm):
     image = forms.ImageField(required=False)
+    address = forms.CharField(widget=forms.Textarea)
+    pincode = forms.DecimalField(widget=forms.TextInput,max_digits=6)
+    phone = forms.DecimalField(widget=forms.TextInput,max_digits=10)
+
     class Meta:
         model = UserModels.User_Profile
         fields = ('phone','address','street','city','pincode','image')
@@ -22,12 +26,13 @@ class C_Login(forms.Form):
     Password = forms.CharField(widget=forms.PasswordInput)
 
 class UserUpdateForm(forms.ModelForm):
-    email = forms.EmailField()
+    email = forms.EmailField(widget=forms.EmailInput)
     class Meta:
         model = User
         fields = ('username','first_name','last_name','email')
 
 class ProfileUpdateForm(forms.ModelForm):
+    image = forms.ImageField(required=False)
     class Meta:
         model = UserModels.User_Profile
         fields = ('phone','address','street','city','pincode','image')

@@ -6,7 +6,7 @@ class User_Profile(models.Model):
     User = models.OneToOneField(User,on_delete=models.CASCADE)
     phone = models.DecimalField(max_digits=10,decimal_places=0)
     address = models.CharField(max_length=300)
-    street = models.CharField(max_length=30)
+    street = models.CharField(max_length=30,null=True)
     city = models.CharField(max_length=30)
     pincode = models.DecimalField(max_digits=6,decimal_places=0)
     image = models.ImageField(default='default.png',upload_to='profile_pics')
