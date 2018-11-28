@@ -21,8 +21,8 @@
       <ul>
         <li><a class="active" href='{% url 'Users-Home' %}'>Home</a></li>
         {% if user.is_authenticated %}
-            <li style="float:right"><a href={% url 'Users-Profile' %}>Profile</a></li>
             <li style="float:right"><a href={% url 'Users-Logout' %}>Logout</a></li>
+            <li style="float:right"><a href={% url 'Users-Profile' %}>Profile</a></li>
         {% else %}
             <li style="float:right"><a href={% url 'Users-Login' %}>Login</a></li>
             <li style="float:right"><a href={% url 'Rest-Login' %}>Hotel Login</a></li>
@@ -31,18 +31,48 @@
       </ul>
 
 
-    {% if messages %}
-        {% for message in messages %}
-            <div class="alert alert-{{ message.tags }}">
-                {{ message }}
-            </div>
-        {% endfor %}
-    {% endif %}
-              <div style="padding:20px;margin-top:30px;">
-                {% block body %}
+  <div style="padding:20px;margin-top:30px;">
+    <div class='container'>
+      <div class='row'>
+        <div class='col s4 offset-s4'>
+          {% if messages %}
+              {% for message in messages %}
+                  {% if message.tags == 'info' %}
+                    <div class='card blue lighten-1'>
+                      <div class='center'>
+                        {{ message }}
+                      </div>
+                    </div>
+                  {% elif message.tags == 'success' %}
+                    <div class='card green lighten-1'>
+                      <div class='center'>
+                        {{ message }}
+                      </div>
+                    </div>
+                  {% elif message.tags == 'error' %}
+                    <div class='card red lighten-1'>
+                      <div class='center'>
+                        {{ message }}
+                      </div>
+                    </div>
+                  {% else %}
+                    <div class='card gray lighten-1'>
+                      <div class='center'>
+                        {{ message }}
+                      </div>
+                    </div>
+                  {% endif %}
+              {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
 
-                {% endblock body %}
-              </div>
+
+    {% block body %}
+
+    {% endblock body %}
+  </div>
 
 
   <!-- =================================================== -->
