@@ -1,87 +1,87 @@
 {% load staticfiles %}
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-      <link rel="stylesheet" href="{% static 'Materialize/CSS/materialize.css' %}">
-      <link rel="stylesheet" href="{% static 'Login/CSS/header.css' %}">
+        <link rel="stylesheet" href="{% static 'Materialize/CSS/materialize.css' %}">
+        <link rel="stylesheet" href="{% static 'Login/CSS/header.css' %}">
         <link rel="stylesheet" href="{% static 'Login/CSS/Googleicon.css' %}">
 
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     {% block head %}{% endblock head %}
-  </head>
-  <body>
-      <div class="page-overlay"></div>
+    </head>
+    <body>
+        <div class="page-overlay"></div>
 
-      <ul>
-        <li><a class="active" href='{% url 'Users-Home' %}'>Home</a></li>
-        {% if user.is_authenticated %}
-            <li style="float:right"><a href={% url 'Users-Logout' %}>Logout</a></li>
-            <li style="float:right"><a href={% url 'Users-Profile' %}>Profile</a></li>
-        {% else %}
-            <li style="float:right"><a href={% url 'Users-Login' %}>Login</a></li>
-            <li style="float:right"><a href={% url 'Rest-Login' %}>Hotel Login</a></li>
-            <li style="float:right"><a href={% url 'Users-Register' %}>Custumer Register</a></li>
-        {% endif %}
-      </ul>
+            <ul>
+                <li><a class="active" href='{% url 'Users-Home' %}'>Home</a></li>
+                {% if user.is_authenticated %}
+                    <li style="float:right"><a href={% url 'Users-Logout' %}>Logout</a></li>
+                    <li style="float:right"><a href={% url 'Users-Profile' %}>Profile</a></li>
+                {% else %}
+                    <li style="float:right"><a href={% url 'Users-Login' %}>Login</a></li>
+                    <li style="float:right"><a href={% url 'Rest-Login' %}>Hotel Login</a></li>
+                    <li style="float:right"><a href={% url 'Users-Register' %}>Custumer Register</a></li>
+                {% endif %}
+            </ul>
 
 
-  <div style="padding:20px;margin-top:30px;">
-    <div class='container'>
-      <div class='row'>
-        <div class='col s4 offset-s4'>
-          {% if messages %}
-              {% for message in messages %}
-                  {% if message.tags == 'info' %}
-                    <div class='card blue lighten-1'>
-                      <div class='center'>
-                        {{ message }}
-                      </div>
+            <div style="padding:20px;margin-top:30px;">
+                <div class='container'>
+                    <div class='row'>
+                        <div class='col s4 offset-s4'>
+                            {% if messages %}
+                                {% for message in messages %}
+                                    {% if message.tags == 'info' %}
+                                        <div class='card blue lighten-1'>
+                                            <div class='center'>
+                                                {{ message }}
+                                            </div>
+                                        </div>
+                                    {% elif message.tags == 'success' %}
+                                        <div class='card green lighten-1'>
+                                            <div class='center'>
+                                                {{ message }}
+                                            </div>
+                                        </div>
+                                    {% elif message.tags == 'error' %}
+                                        <div class='card red lighten-1'>
+                                            <div class='center'>
+                                                {{ message }}
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        <div class='card gray lighten-1'>
+                                            <div class='center'>
+                                                {{ message }}
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </div>
                     </div>
-                  {% elif message.tags == 'success' %}
-                    <div class='card green lighten-1'>
-                      <div class='center'>
-                        {{ message }}
-                      </div>
-                    </div>
-                  {% elif message.tags == 'error' %}
-                    <div class='card red lighten-1'>
-                      <div class='center'>
-                        {{ message }}
-                      </div>
-                    </div>
-                  {% else %}
-                    <div class='card gray lighten-1'>
-                      <div class='center'>
-                        {{ message }}
-                      </div>
-                    </div>
-                  {% endif %}
-              {% endfor %}
-          {% endif %}
-        </div>
-      </div>
-    </div>
+                </div>
 
 
-    {% block body %}
+            {% block body %}
 
-    {% endblock body %}
-  </div>
+            {% endblock body %}
+          </div>
 
 
   <!-- =================================================== -->
 
-      <!-- Optional JavaScript -->
-      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-      <script type="text/javascript"  src="{% static 'Materialize/JS/materialize.js' %}"></script>
-  </body>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script type="text/javascript"  src="{% static 'Materialize/JS/materialize.js' %}"></script>
+    </body>
 </html>
