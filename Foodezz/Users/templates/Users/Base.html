@@ -1,0 +1,178 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="stylesheet" href="{% static 'Materialize/CSS/materialize.css' %}">
+{#        <link rel="stylesheet" href="{% static 'Login/CSS/header.css' %}">#}
+        <link rel="stylesheet" href="{% static 'Login/CSS/Googleicon.css' %}">
+        <link rel="stylesheet" href="{% static "Login/CSS/Karthik_header.css" %}">
+
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    {% block head %}{% endblock head %}
+    </head>
+    <body>
+        <div class="page-overlay"></div>
+
+{#            <ul>#}
+{#                <li><a class="active" href='{% url 'Users-Home' %}'>Home</a></li>#}
+{#                {% if user.is_authenticated %}#}
+{#                    <li style="float:right"><a href={% url 'Users-Logout' %}>Logout</a></li>#}
+{#                    <li style="float:right"><a href={% url 'Users-Profile' %}>Profile</a></li>#}
+{#                {% else %}#}
+{#                    <li style="float:right"><a href={% url 'Users-Login' %}>Login</a></li>#}
+{#                    <li style="float:right"><a href={% url 'Rest-Login' %}>Hotel Login</a></li>#}
+{#                    <li style="float:right"><a href={% url 'Users-Register' %}>Custumer Register</a></li>#}
+{#                {% endif %}#}
+{#            </ul>#}
+
+            <ul class="nav">
+                <li id="settings">
+                    <a href="{% url 'Users-Home' %}"><img src="{% static 'Login/Media/123.png' %}" height=100px width=200px/></a>
+                </li>
+                <li>
+                    <a href="#">About Us</a>
+                </li>
+                <li id="search">
+                    <form action="" method="get">
+                        <input type="text" name="search_text" id="search_text" placeholder="Search"/>
+                        <input type="button" name="search_button" id="search_button"></a>
+                    </form>
+                </li>
+                {% if user.is_authenticated %}
+                    <div class="right">
+                        <li id="options">
+                            <a href="#">Hi ,{{ user.username }}</a>
+                            <ul class="subnav">
+                                <li><a href="#">My Cart</a></li>
+                                <li><a href="{% url 'Users-Profile' %}">Profile</a></li>
+                                <li><a href="{% url 'Users-Logout' %}">Logout</a></li>
+                            </ul>
+                        </li>
+                    </div>
+                {% else %}
+                    <div class="right">
+                        <li>
+                            <a href="{% url 'Users-Login' %}">
+                                Login
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'Users-Register' %}">
+                                Register
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'Rest-Login' %}">
+                                Hotel Login
+                            </a>
+                        </li>
+                    </div>
+                {% endif %}
+            </ul>
+
+
+
+            <div style="padding:20px;margin-top:30px;">
+                <div class='container'>
+                    <div class='row'>
+                        <div class='col s4 offset-s4'>
+                            {% if messages %}
+                                {% for message in messages %}
+                                    {% if message.tags == 'info' %}
+                                        <div class='card blue lighten-1'>
+                                            <div class='center'>
+                                                {{ message }}
+                                            </div>
+                                        </div>
+                                    {% elif message.tags == 'success' %}
+                                        <div class='card green lighten-1'>
+                                            <div class='center'>
+                                                {{ message }}
+                                            </div>
+                                        </div>
+                                    {% elif message.tags == 'error' %}
+                                        <div class='card red lighten-1'>
+                                            <div class='center'>
+                                                {{ message }}
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        <div class='card gray lighten-1'>
+                                            <div class='center'>
+                                                {{ message }}
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+
+            {% block body %}
+
+            {% endblock body %}
+          </div>
+
+
+          <!--------------------- Footer here -------------------------->
+          <footer class="footer-distributed">
+              <div class="footer-left">
+                    <h3>F00d3zz</h3>
+                    <p class="footer-links">
+                        <a href="{% url 'Users-Home' %}">Home</a>
+                        ·
+                        <a href="#">Blog</a>
+                        ·
+                        <a href="#">Pricing</a>
+                        ·
+                        <a href="#">About</a>
+                        ·
+                        <a href="#">Faq</a>
+                        ·
+                        <a href="#">Contact</a>
+                    </p>
+
+              <p class="footer-company-name">Food3zz &copy; 2018</p>
+
+                  <div class="footer-icons">
+
+                  <a href="#"><i class="fa fa-facebook"></i></a>
+                  <a href="#"><i class="fa fa-twitter"></i></a>
+                  <a href="#"><i class="fa fa-github"></i></a>
+
+                  </div>
+
+              </div>
+
+              <div class="footer-right">
+
+                  <p>Contact Us</p>
+
+                  <form action="" method="post">
+                      <input type="text" name="email" placeholder="Email" />
+                      <textarea name="message" placeholder="Message"></textarea>
+                      <button type="submit">Send</button>
+
+                  </form>
+
+              </div>
+
+          </footer>
+
+  <!-- =================================================== -->
+
+        <!-- Optional JavaScript -->
+        <script type="text/javascript"  src="{% static 'Materialize/JS/materialize.js' %}"></script>
+    </body>
+</html>
