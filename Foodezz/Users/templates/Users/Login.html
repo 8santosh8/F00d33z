@@ -28,3 +28,55 @@
             Don't have an account? <a href="{% url 'Users-Register' %}">Register here</a>
         </div>
 {% endblock body %}
+{##}
+{##}
+{#{% block body %}#}
+{#<div class="container">#}
+{#    <div class="row">#}
+{#        <div class="col s12">#}
+{#            <div class="card-panel blue lighten-3 hoverable">#}
+{#                <h2 class="center green-text">LOGIN</h2>#}
+{#                <form action="" method="POST">#}
+{#                    {% csrf_token %}#}
+{#                    <div class="row">#}
+{#                        <div class="input-field col s12">#}
+{#                            <i class="material-icons prefix">account_circle</i>#}
+{#                            {{ Login_form.username }}#}
+{#                            <label for="{{ Login_form.username.id_for_label }}">Username</label>#}
+{#                            {% if Login_form.help_text %}#}
+{#                                <span class="helper-text" data-error="wrong"#}
+{#                                              data-success="right">{{ form.username.help_text }}</span>#}
+{#                            {% endif %}#}
+{#                            {% if Login_form.username.errors %}#}
+{#                                <span class="helper-text red-text"#}
+{#                                              style="font-size:large">{{ form.username.errors }}</span>#}
+{#                            {% endif %}#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="row">#}
+{#                        <div class="input-field col s12">#}
+{#                            <i class="material-icons prefix">vpn_key</i>#}
+{#                            {{ Login_form.password }}#}
+{#                            <label for="{{ Login_form.password.id_for_label }}">Password</label>#}
+{#                            {% if Login_form.help_text %}#}
+{#                                <span class="helper-text" data-error="wrong"#}
+{#                                              data-success="right">{{ Login_form.password.help_text }}</span>#}
+{#                            {% endif %}#}
+{#                            {% if Login_form.password.errors %}#}
+{#                                <span class="helper-text red-text"#}
+{#                                              style="font-size:large">{{ Login_form.password.errors }}</span>#}
+{#                            {% endif %}#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </form>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#        <a href="{% url 'password_reset' %}">#}
+{#            Forgot password?#}
+{#        </a>#}
+{#        </div>#}
+{#        <div>#}
+{#            Don't have an account? <a href="{% url 'Users-Register' %}">Register here</a>#}
+{#        </div>#}
+{#{% endblock body %}#}

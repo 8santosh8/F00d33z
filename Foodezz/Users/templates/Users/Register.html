@@ -8,21 +8,25 @@
 {% endblock head %}
 
 {% block body %}
-    <div class="container">
+    <div class="card-panel hoverable">
             <div class="row">
                 <form method="POST">
                     {% csrf_token %}
-                    <div class="col-md-12" style="text-align: center">
-                        Register
-                    </div>
+                    <div class="divider"></div>
+                        <div class="section" style="text-align: center">
+                            Register
+                        </div>
+                    <div class="divider"></div>
                     <fieldset class="form-group">
-                    <div class="col-md-12">
-                        {{ User_Form1|crispy }}
-                        {{ User_Details1|crispy }}
+                    <div class="col s3 offset-s2">
+                        {{ User_Form1 }}
+                    </div>
+                    <div class="col s3 offset-s2">
+                        {{ User_Details1 }}
                     </div>
                     </fieldset>
-                    <div class="col-md-12">
-                        <button type="submit" class="btn btn-outline-info register_btn">Register</button>
+                    <div class="">
+                        <button type="submit" class="btn-floating btn-large green z-depth-0">Register</button>
                     </div>
                     <div class="col-md-12 border-top pt-4">
                         <small class="text-muted">
@@ -33,3 +37,4 @@
             </div>
         </div>
 {% endblock body %}
+
