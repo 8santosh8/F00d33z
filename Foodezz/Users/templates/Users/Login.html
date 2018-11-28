@@ -40,7 +40,7 @@
 {#                {% endfor %}#}
                 <div class="row">
                     <div class="input-field col s12">
-                        <i class="material-icons prefix white">account_circle</i>
+                        <i class="material-icons prefix white">person</i>
                         {{ Login_form.Username|add_class:"validate" }}
                         <label class="white" for="{{ Login_form.Username.id_for_label }}">Username</label>
                         {% if Login_form.Username.help_text %}
@@ -55,7 +55,7 @@
                 </div>
               <div class="row">
                     <div class="input-field col s12">
-                        <i class="material-icons prefix white">account_circle</i>
+                        <i class="material-icons prefix white">lock_open</i>
                         {{ Login_form.Password|add_class:"validate" }}
                         <label class="white" for="{{ Login_form.Password.id_for_label }}">Password</label>
                         {% if Login_form.Password.help_text %}
