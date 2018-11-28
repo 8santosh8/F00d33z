@@ -31,7 +31,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'Home.apps.HomeConfig',
     'Users.apps.UsersConfig',
     'crispy_forms',
     'django.contrib.admin',
@@ -40,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -127,32 +125,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'templates'),
     ]
 
-MEDIA_ROOT = os.path.join(BASE_DIR,'Media')
-MEDIA_URL = '/Media/'
-
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = 'Users-Home'
+
 LOGOUT_REDIRECT_URL = 'Users-Home'
-
-LOGIN_URL = 'Users-Login'
-
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'hemanthtemp07@gmail.com'
-EMAIL_HOST_PASSWORD = 'UchihaMadara'
-
-# AUTHENTICATION_BACKENDS = [
-#     'social_core.backends.open_id.OpenIdAuth',  # for Google authentication
-#     'social_core.backends.google.GoogleOpenId',  # for Google authentication
-#     'social_core.backends.google.GoogleOAuth2',  # for Google authentication
-#     'social_core.backends.github.GithubOAuth2',  # for Github authentication
-#     'social_core.backends.facebook.FacebookOAuth2',  # for Facebook authentication
-#
-#     'django.contrib.auth.backends.ModelBackend',
-# ]
-
-# SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '420290905831-bnjevisadvainej60s04tcrjllp649iu.apps.googleusercontent.com'
-# SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'XJWeUmLEgmeWJdovKvS2kG1t'

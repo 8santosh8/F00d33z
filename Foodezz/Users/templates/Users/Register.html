@@ -8,27 +8,25 @@
 {% endblock head %}
 
 {% block body %}
-    <div class="card-panel hoverable">
+    <div class="container">
             <div class="row">
                 <form method="POST">
                     {% csrf_token %}
-                    <div class="" style="text-align: center">
+                    <div class="col-md-12" style="text-align: center">
                         Register
                     </div>
                     <fieldset class="form-group">
-                    <div class="col s3">
-                        {{ User_Form1 }}
-                    </div>
-                    <div class="col s3 offset-s3">
-                        {{ User_Details1 }}
+                    <div class="col-md-12">
+                        {{ User_Form1|crispy }}
+                        {{ User_Details1|crispy }}
                     </div>
                     </fieldset>
-                    <div class="">
+                    <div class="col-md-12">
                         <button type="submit" class="btn btn-outline-info register_btn">Register</button>
                     </div>
                     <div class="col-md-12 border-top pt-4">
                         <small class="text-muted">
-                            Already have an account? <a class="ml-2" href='{% url 'Users-Login' %}'>Login</a>
+                            Already have an account? <a class="ml-2" href="#">Login</a>
                         </small>
                     </div>
                 </form>
