@@ -30,13 +30,12 @@ def Login(request):
         messages.info(request,f'You are already logged in!')
         return redirect('Users-Home')
     if request.method == 'POST':
-
         name = request.POST.get('Username')
         pword = request.POST.get('Password')
 
         user = authenticate(username=name,password=pword)
 
-        if user:
+        if user and user.user_profile.rest == False:
             if user.is_active:
                 login(request,user)
                 return redirect('Users-Home')
@@ -45,8 +44,9 @@ def Login(request):
                 return redirect('User-Login')
         else:
             messages.error(request, f'Invalid login details')
-            return redirect('Users-Login')
-    Log_form = C_Login()
+            Log_form = C_Login(request.POST)
+    else:
+        Log_form = C_Login()
     return render(request,'Users/Login.html',{'Login_form':Log_form})
 
 @login_required
@@ -65,3 +65,26 @@ def Profile(request):
         p_form = forms.ProfileUpdateForm(instance= request.user.user_profile)
 
     return render(request,'Users/Profile.html',{'u_form':u_form,'p_form':p_form})
+
+def RestLogin(request):
+    if request.user.is_authenticated:
+        messages.info(request, f'You are already logged in!, Log out to login from different account')
+        return redirect('Users-Home')
+    if request.method == "POST":
+        name = request.POST.get('Username')
+        pword = request.POST.get('Password')
+
+        user = authenticate(username=name, password=pword)
+        if user and user.user_profile.rest == True:
+            if user.is_active:
+                login(request, user)
+                return redirect('Users-Home')
+            else:
+                messages.error(request, f'Account not in active state')
+                return redirect('User-Login')
+        else:
+            messages.error(request, f'Invalid login details')
+            Rest_Login_Form = C_Login(request.POST)
+    else:
+        Rest_Login_Form = C_Login()
+    return render(request,'Users/Rest-Login.html',{'Login_form':Rest_Login_Form})

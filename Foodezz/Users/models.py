@@ -10,6 +10,7 @@ class User_Profile(models.Model):
     city = models.CharField(max_length=30)
     pincode = models.DecimalField(max_digits=6,decimal_places=0)
     image = models.ImageField(default='default.png',upload_to='profile_pics')
+    rest = models.BooleanField(default=False)
 
     def __str__(self):
         return f'{self.User.username} Profile'

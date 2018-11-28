@@ -27,8 +27,9 @@
                         <a class="" href="{% url 'Users-Profile' %}">Profile</a><br>
                         <a class="logout_btn" href={% url 'Users-Logout' %}>Log Out</a>
                     {% else %}
-                        <a class="login_btn" href={% url 'Users-Login' %}>LOG IN</a><br>
-                        <a class="register_btn" href={% url 'Users-Register' %}>REGISTER</a>
+                        <a class="login_btn" href={% url 'Users-Login' %}>LOGIN</a><br>
+                        <a class="register_btn" href={% url 'Rest-Login' %}>Hotel LOGIN</a><br>
+                        <a class="register_btn" href={% url 'Users-Register' %}>Custumer REGISTER</a>
                     {% endif %}
                 </div>
           </div>

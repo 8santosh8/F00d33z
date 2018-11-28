@@ -12,7 +12,7 @@ class UserForm(UserCreationForm):
         fields = ('username','first_name','last_name','password1','password2','email',)
 
 class User_Details(forms.ModelForm):
-
+    image = forms.ImageField(required=False)
     class Meta:
         model = UserModels.User_Profile
         fields = ('phone','address','street','city','pincode','image')
