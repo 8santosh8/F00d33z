@@ -23,21 +23,51 @@
                 {% for hidden in Login_form.hidden_fields %}
                   {{ hidden }}
                 {% endfor %}
-                {% for field in Login_form.visible_fields %}
-                  <div class='row'>
-                    <div class='input-field col s12'>
-                      <label class="white" for='{{ field.id_for_label }}'>{{ field.label }}</label>
-                      {{ field|add_class:"validate" }}
-                      {% if field.help_text %}
-                        <span class="helper-text" data-error="wrong"
-                          data-success="right">{{ field.help_text }}</span>
-                      {% endif %}
-                      {% for error in field.errors %}
-                        <span class='help_block'>{{ error }}</span>
-                      {% endfor %}
+{#                {% for field in Login_form.visible_fields %}#}
+{#                  <div class='row'>#}
+{#                    <div class='input-field col s12'>#}
+{#                      <label class="white" for='{{ field.id_for_label }}'>{{ field.label }}</label>#}
+{#                      {{ field|add_class:"validate" }}#}
+{#                      {% if field.help_text %}#}
+{#                        <span class="helper-text" data-error="wrong"#}
+{#                          data-success="right">{{ field.help_text }}</span>#}
+{#                      {% endif %}#}
+{#                      {% for error in field.errors %}#}
+{#                        <span class='help_block'>{{ error }}</span>#}
+{#                      {% endfor %}#}
+{#                    </div>#}
+{#                  </div>#}
+{#                {% endfor %}#}
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix white">account_circle</i>
+                        {{ Login_form.Username|add_class:"validate" }}
+                        <label class="white" for="{{ Login_form.Username.id_for_label }}">Username</label>
+                        {% if Login_form.Username.help_text %}
+                            <span class="helper-text" data-error="wrong"
+                                  data-success="right">{{ Login_form.Username.help_text }}</span>
+                        {% endif %}
+                        {% if Login_form.Username.errors %}
+                            <span class="helper-text red-text"
+                                  style="font-size:large">{{ Login_form.Username.errors }}</span>
+                        {% endif %}
                     </div>
-                  </div>
-                {% endfor %}
+                </div>
+              <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix white">account_circle</i>
+                        {{ Login_form.Password|add_class:"validate" }}
+                        <label class="white" for="{{ Login_form.Password.id_for_label }}">Password</label>
+                        {% if Login_form.Password.help_text %}
+                            <span class="helper-text" data-error="wrong"
+                                  data-success="right">{{ Login_form.Password.help_text }}</span>
+                        {% endif %}
+                        {% if Login_form.Password.errors %}
+                            <span class="helper-text red-text"
+                                  style="font-size:large">{{ Login_form.Password.errors }}</span>
+                        {% endif %}
+                    </div>
+                </div>
               </div>
             </div>
             <div class=row>

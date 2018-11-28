@@ -13,27 +13,246 @@
             <div class="row">
                 <form method="POST">
                     {% csrf_token %}
-                    <div class="divider"></div>
-                        <div class="section" style="text-align: center">
-                            Register
+                    <div class='row'>
+
+                      {% for hidden in User_Form1.hidden_fields %}
+                        {{ hidden }}
+                      {% endfor %}
+                      {% for hidden in User_Details1.hidden_fields %}
+                        {{ hidden }}
+                      {% endfor %}
+
+                      <div class="col s3 offset-s2">
+                          <!-- {{ User_Form1 }} -->
+{#                          {% for field in User_Form1.visible_fields %}#}
+{#                            <div class='row'>#}
+{#                              <div class='input-field col s12'>#}
+{#                                <label class="white" for='{{ field.id_for_label }}'>{{ field.label }}</label>#}
+{#                                {{ field|add_class:"validate" }}#}
+{#                                {% if field.help_text %}#}
+{#                                  <span class="helper-text" data-error="wrong"#}
+{#                                    data-success="right">{{ field.help_text }}</span>#}
+{#                                {% endif %}#}
+{#                                {% for error in field.errors %}#}
+{#                                  <span class='help_block'>{{ error }}</span>#}
+{#                                {% endfor %}#}
+{#                              </div>#}
+{#                            </div>#}
+{#                          {% endfor %}#}
+                          <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix white">account_circle</i>
+                                    {{ User_Form1.username|add_class:"validate" }}
+                                    <label class="white" for="{{ User_Form1.username.id_for_label }}">Username</label>
+                                    {% if User_Form1.username.help_text %}
+                                        <span class="helper-text" data-error="wrong"
+                                              data-success="right">{{ User_Form1.username.help_text }}</span>
+                                    {% endif %}
+                                    {% if User_Form1.username.errors %}
+                                        <span class="helper-text red-text"
+                                              style="font-size:large">{{ User_Form1.username.errors }}</span>
+                                    {% endif %}
+
+                                </div>
+                          </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix white">account_circle</i>
+                                    {{ User_Form1.first_name|add_class:"validate" }}
+                                    <label class="white" for="{{ User_Form1.first_name.id_for_label }}">First name</label>
+                                    {% if User_Form1.first_name.help_text %}
+                                        <span class="helper-text" data-error="wrong"
+                                              data-success="right">{{ User_Form1.first_name.help_text }}</span>
+                                    {% endif %}
+                                    {% if User_Form1.first_name.errors %}
+                                        <span class="helper-text red-text"
+                                              style="font-size:large">{{ User_Form1.first_name.errors }}</span>
+                                    {% endif %}
+
+                                </div>
+                          </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix white">account_circle</i>
+                                    {{ User_Form1.last_name|add_class:"validate" }}
+                                    <label class="white" for="{{ User_Form1.last_name.id_for_label }}">Last name</label>
+                                    {% if User_Form1.last_name.help_text %}
+                                        <span class="helper-text" data-error="wrong"
+                                              data-success="right">{{ User_Form1.last_name.help_text }}</span>
+                                    {% endif %}
+                                    {% if User_Form1.last_name.errors %}
+                                        <span class="helper-text red-text"
+                                              style="font-size:large">{{ User_Form1.last_name.errors }}</span>
+                                    {% endif %}
+
+                                </div>
+                          </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix white">account_circle</i>
+                                    {{ User_Form1.password1|add_class:"validate" }}
+                                    <label class="white" for="{{ User_Form1.password1.id_for_label }}">Password</label>
+                                    {% if User_Form1.password1.help_text %}
+                                        <span class="helper-text" data-error="wrong"
+                                              data-success="right">{{ User_Form1.password1.help_text }}</span>
+                                    {% endif %}
+                                    {% if User_Form1.password1.errors %}
+                                        <span class="helper-text red-text"
+                                              style="font-size:large">{{ User_Form1.password1.errors }}</span>
+                                    {% endif %}
+
+                                </div>
+                          </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix white">account_circle</i>
+                                    {{ User_Form1.password2|add_class:"validate" }}
+                                    <label class="white" for="{{ User_Form1.password2.id_for_label }}">Re-enter password</label>
+                                    {% if User_Form1.password2.help_text %}
+                                        <span class="helper-text" data-error="wrong"
+                                              data-success="right">{{ User_Form1.password2.help_text }}</span>
+                                    {% endif %}
+                                    {% if User_Form1.password2.errors %}
+                                        <span class="helper-text red-text"
+                                              style="font-size:large">{{ User_Form1.password2.errors }}</span>
+                                    {% endif %}
+
+                                </div>
+                          </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix white">account_circle</i>
+                                    {{ User_Form1.email|add_class:"validate" }}
+                                    <label class="white" for="{{ User_Form1.email.id_for_label }}">Email</label>
+                                    {% if User_Form1.email.help_text %}
+                                        <span class="helper-text" data-error="wrong"
+                                              data-success="right">{{ User_Form1.email.help_text }}</span>
+                                    {% endif %}
+                                    {% if User_Form1.email.errors %}
+                                        <span class="helper-text red-text"
+                                              style="font-size:large">{{ User_Form1.email.errors }}</span>
+                                    {% endif %}
+
+                                </div>
+                          </div>
+
+                      </div>
+                      <div class="col s3 offset-s2">
+
+                          <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix white">account_circle</i>
+                                    {{ User_Details1.phone|add_class:"validate" }}
+                                    <label class="white" for="{{ User_Details1.phone.id_for_label }}">Phone No</label>
+                                    {% if User_Details1.phone.help_text %}
+                                        <span class="helper-text" data-error="wrong"
+                                              data-success="right">{{ User_Details1.phone.help_text }}</span>
+                                    {% endif %}
+                                    {% if User_Details1.phone.errors %}
+                                        <span class="helper-text red-text"
+                                              style="font-size:large">{{ User_Details1.phone.errors }}</span>
+                                    {% endif %}
+
+                                </div>
+                          </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix white">account_circle</i>
+                                    {{ User_Details1.address|add_class:"materialize-textarea validate" }}
+                                    <label class="white" for="{{ User_Details1.address.id_for_label }}">Address</label>
+                                    {% if User_Details1.address.help_text %}
+                                        <span class="helper-text" data-error="wrong"
+                                              data-success="right">{{ User_Details1.address.help_text }}</span>
+                                    {% endif %}
+                                    {% if User_Details1.address.errors %}
+                                        <span class="helper-text red-text"
+                                              style="font-size:large">{{ User_Details1.address.errors }}</span>
+                                    {% endif %}
+
+                                </div>
+                          </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix white">account_circle</i>
+                                    {{ User_Details1.street|add_class:"validate" }}
+                                    <label class="white" for="{{ User_Details1.street.id_for_label }}">Street</label>
+                                    {% if User_Details1.street.help_text %}
+                                        <span class="helper-text" data-error="wrong"
+                                              data-success="right">{{ User_Details1.street.help_text }}</span>
+                                    {% endif %}
+                                    {% if User_Details1.street.errors %}
+                                        <span class="helper-text red-text"
+                                              style="font-size:large">{{ User_Details1.street.errors }}</span>
+                                    {% endif %}
+
+                                </div>
+                          </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix white">account_circle</i>
+                                    {{ User_Details1.city|add_class:"validate" }}
+                                    <label class="white" for="{{ User_Details1.city.id_for_label }}">City</label>
+                                    {% if User_Details1.city.help_text %}
+                                        <span class="helper-text" data-error="wrong"
+                                              data-success="right">{{ User_Details1.city.help_text }}</span>
+                                    {% endif %}
+                                    {% if User_Details1.city.errors %}
+                                        <span class="helper-text red-text"
+                                              style="font-size:large">{{ User_Details1.city.errors }}</span>
+                                    {% endif %}
+
+                                </div>
+                          </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix white">account_circle</i>
+                                    {{ User_Details1.pincode|add_class:"validate" }}
+                                    <label class="white" for="{{ User_Details1.pincode.id_for_label }}">Pin code</label>
+                                    {% if User_Details1.pincode.help_text %}
+                                        <span class="helper-text" data-error="wrong"
+                                              data-success="right">{{ User_Details1.pincode.help_text }}</span>
+                                    {% endif %}
+                                    {% if User_Details1.pincode.errors %}
+                                        <span class="helper-text red-text"
+                                              style="font-size:large">{{ User_Details1.pincode.errors }}</span>
+                                    {% endif %}
+
+                                </div>
+                            </div>
+{#                            <div class="row">#}
+{#                                <div class="file-field input-field col s12">#}
+{#                                    <div class="btn">#}
+{#                                        <span>Upload image</span>#}
+{#                                        <input type="file">#}
+{#                                    </div>#}
+{#                                    <div class="file-path-wrapper">#}
+{#                                        {{ User_Details1.image|add_class:"validate" }}#}
+{#                                    </div>#}
+{#                                    {% if User_Details1.image.help_text %}#}
+{#                                        <span class="helper-text" data-error="wrong"#}
+{#                                              data-success="right">{{ User_Details1.image.help_text }}</span>#}
+{#                                    {% endif %}#}
+{#                                    {% if User_Details1.image.errors %}#}
+{#                                        <span class="helper-text red-text"#}
+{#                                              style="font-size:large">{{ User_Details1.image.errors }}</span>#}
+{#                                    {% endif %}#}
+{##}
+{#                                </div>#}
+{#                            </div>#}
+
+                            <div class="row">
+                                <button type="submit" class="">Register</button>
+                            </div>
+                      </div>
+
+                    <div class="row">
+                        <div class="col s3 offset-s5">
+                            <small class="text-muted">
+                                Already have an account? <a class="ml-2" href='{% url 'Users-Login' %}'>Login</a>
+                            </small>
                         </div>
-                    <div class="divider"></div>
-                    <fieldset class="form-group">
-                    <div class="col s3 offset-s2">
-                        {{ User_Form1 }}
                     </div>
-                    <div class="col s3 offset-s2">
-                        {{ User_Details1 }}
-                    </div>
-                    </fieldset>
-                    <div class="">
-                        <button type="submit" class="btn-floating btn-large green z-depth-0">Register</button>
-                    </div>
-                    <div class="col-md-12 border-top pt-4">
-                        <small class="text-muted">
-                            Already have an account? <a class="ml-2" href='{% url 'Users-Login' %}'>Login</a>
-                        </small>
-                    </div>
+
                 </form>
             </div>
         </div>

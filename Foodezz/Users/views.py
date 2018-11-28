@@ -12,8 +12,9 @@ def Register(request):
         return redirect('Users-Home')
     if(request.method == 'POST'):
         User_Form1 = forms.UserForm(request.POST)
-        User_Details1 = forms.User_Details(request.POST)
+        User_Details1 = forms.User_Details(request.POST,request.FILES)
         if User_Form1.is_valid() and User_Details1.is_valid():
+            print(User_Details1.cleaned_data.get('image'))
             if User.objects.filter(email = User_Form1.cleaned_data.get('email')).exists():
                 messages.error(request, f'Email already exists go to login page to login')
                 return render(request, 'Users/Register.html',
