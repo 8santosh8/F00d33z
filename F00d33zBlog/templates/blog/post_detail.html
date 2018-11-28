@@ -7,14 +7,14 @@
 <small>Post created by: {{ post.author }}</small>
 <hr>
 <p>{{ post.body }}</p>
-
+<!-- 
 <div class="row gallary">
 	{% for p in post.images_set.all %}
 		<div class="col-md-3">
 			<img src="{{ p.image.url }}" alt="Image Not Found" class="img-thumbnail">
 		</div>
 	{% endfor %}
-</div>
+</div> -->
 <div id="like-section">
 	{% include 'blog/like_section.html' %}
 </div>

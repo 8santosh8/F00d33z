@@ -11,7 +11,13 @@
 		</form>	
 	</div>	
 </div>
-{{ comments.count }} Comment{{ comments|pluralize }}
+{{ comments.count }}
+{% if comments.count > 1 %}
+	comments
+{% else %}
+	comment
+{% endif %}
+<!--{{ comments.count }} Comment{{ comments|pluralize }}-->
 {% for comment in comments %}
 <blockquote class="blockquote">
   <p class="mb-0"><small>{{ comment.content }}</small></p>

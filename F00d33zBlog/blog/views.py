@@ -107,7 +107,7 @@ def like_post(request):
 		html = render_to_string('blog/like_section.html', context, request=request)
 		return JsonResponse({'form':html})
 def post_create(request):
-	ImageFormset = modelformset_factory(Images, fields=('image',), extra=4)
+	ImageFormset = modelformset_factory(Images, fields=('image',))
 	if(request.method == 'POST'):
 		form = PostCreateForm(request.POST)
 		formset = ImageFormset(request.POST or None, request.FILES or None)
@@ -136,7 +136,7 @@ def post_create(request):
 
 def post_edit(request, id):
 	post = get_object_or_404(Post, id=id)
-	ImageFormset = modelformset_factory(Images, fields=('image',), extra=4, max_num=4)
+	ImageFormset = modelformset_factory(Images, fields=('image',),max_num=1)
 	if(post.author != request.user):
 		raise Http404()
 	if(request.method=="POST"):
