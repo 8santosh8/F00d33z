@@ -124,9 +124,12 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'templates'),
     ]
+MEDIA_ROOT = os.path.join(BASE_DIR,'Media')
+MEDIA_URL = '/Media/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = 'Users-Home'
-
 LOGOUT_REDIRECT_URL = 'Users-Home'
+
+LOGIN_URL = 'Users-Login'

@@ -8,6 +8,7 @@ class User_Profile(models.Model):
     street = models.CharField(max_length=30)
     city = models.CharField(max_length=30)
     pincode = models.DecimalField(max_digits=6,decimal_places=0)
+    image = models.ImageField(default='default.png',upload_to='profile_pics')
 
     def __str__(self):
-        return self.User.username
+        return f'{self.User.username} Profile'

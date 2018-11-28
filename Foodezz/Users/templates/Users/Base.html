@@ -17,17 +17,14 @@
     {% block head %}{% endblock head %}
   </head>
   <body>
-  <!-- ====================Menu Bar======================= -->
       <div class="page-overlay"></div>
-  <!-- =================================================== -->
 
-  <!-- =====================Block Body==================== -->
-    <!-- ====================Menu Bar======================= -->
       <div class="page-overlay"></div>
       <div style="border-bottom: 1px solid darkgray; height: 80px">
           <div>
                 <div>
                     {% if user.is_authenticated %}
+                        <a class="" href="{% url 'Users-Profile' %}">Profile</a><br>
                         <a class="logout_btn" href={% url 'Users-Logout' %}>Log Out</a>
                     {% else %}
                         <a class="login_btn" href={% url 'Users-Login' %}>LOG IN</a><br>

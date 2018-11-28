@@ -27,6 +27,9 @@ def Home(request):
     return render(request,'Users/Home.html',)
 
 def Login(request):
+    if request.user.is_authenticated:
+        messages.info(request,f'You are already logged in!')
+        return redirect('Users-Home')
     if request.method == 'POST':
 
         name = request.POST.get('Username')
