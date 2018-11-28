@@ -9,94 +9,97 @@
 
 {% block body %}
 <div class="container">
-  <div class="row">
-    <div class="col s5 offset-s8">
-      <div class="section">
-        <div class="card-panel hoverable">
-          <form method="post" action="" autocomplete="off">
-            <div class="row">
-              <div class="container">
-                {% if form.non_field_errors %}
-                  <span class="red-text">{{ form.non_field_errors }}</span>
-                {% endif %}
-                {% csrf_token %}
-                {% for hidden in Login_form.hidden_fields %}
-                  {{ hidden }}
-                {% endfor %}
-{#                {% for field in Login_form.visible_fields %}#}
-{#                  <div class='row'>#}
-{#                    <div class='input-field col s12'>#}
-{#                      <label class="white" for='{{ field.id_for_label }}'>{{ field.label }}</label>#}
-{#                      {{ field|add_class:"validate" }}#}
-{#                      {% if field.help_text %}#}
-{#                        <span class="helper-text" data-error="wrong"#}
-{#                          data-success="right">{{ field.help_text }}</span>#}
-{#                      {% endif %}#}
-{#                      {% for error in field.errors %}#}
-{#                        <span class='help_block'>{{ error }}</span>#}
-{#                      {% endfor %}#}
-{#                    </div>#}
-{#                  </div>#}
-{#                {% endfor %}#}
-                <div class="row">
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix white">person</i>
-                        {{ Login_form.Username|add_class:"validate" }}
-                        <label class="white" for="{{ Login_form.Username.id_for_label }}">Username</label>
-                        {% if Login_form.Username.help_text %}
-                            <span class="helper-text" data-error="wrong"
-                                  data-success="right">{{ Login_form.Username.help_text }}</span>
-                        {% endif %}
-                        {% if Login_form.Username.errors %}
-                            <span class="helper-text red-text"
-                                  style="font-size:large">{{ Login_form.Username.errors }}</span>
-                        {% endif %}
+    <div class="row">
+        <div class="col s5 offset-s8">
+            <div class="section">
+                <div class="card-panel hoverable">
+                    <form method="post" action="" autocomplete="off">
+                        <div class="row">
+                            <div class="container">
+                                {% if form.non_field_errors %}
+                                    <span class="red-text">{{ form.non_field_errors }}</span>
+                                {% endif %}
+                                {% csrf_token %}
+                                {% for hidden in Login_form.hidden_fields %}
+                                    {{ hidden }}
+                                {% endfor %}
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix white">person</i>
+                                        {{ Login_form.Username|add_class:"validate" }}
+                                        <label class="white" for="{{ Login_form.Username.id_for_label }}">Username</label>
+                                        {% if Login_form.Username.help_text %}
+                                            <span class="helper-text" data-error="wrong"
+                                            data-success="right">{{ Login_form.Username.help_text }}</span>
+                                        {% endif %}
+                                        {% if Login_form.Username.errors %}
+                                            <span class="helper-text red-text"
+                                            style="font-size:large">{{ Login_form.Username.errors }}</span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix white">lock_open</i>
+                                        {{ Login_form.Password|add_class:"validate" }}
+                                        <label class="white" for="{{ Login_form.Password.id_for_label }}">Password</label>
+                                        {% if Login_form.Password.help_text %}
+                                            <span class="helper-text" data-error="wrong"
+                                            data-success="right">{{ Login_form.Password.help_text }}</span>
+                                        {% endif %}
+                                        {% if Login_form.Password.errors %}
+                                            <span class="helper-text red-text"
+                                            style="font-size:large">{{ Login_form.Password.errors }}</span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='row'>
+                            <div class='col s12'>
+                                <div class="right">
+                                    <a href="{% url 'password_reset' %}">
+                                        Forgot password?
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class=row>
+                            <div class=''>
+                                <div class="center">
+                                    <button type="submit" class="btn btn-outline-info register_btn">Login</button>
+                                </div>
+                            </div>
+                        </div>
+                            <div class='row'>
+                                <div class='col s12'>
+                                    Don't have an account? <a href="{% url 'Users-Register' %}">Register here</a>
+                                </div>
+                            </div>
+                    </form>
+                    <div class="divider"></div>
+                    <div class="section"></div>
+                    <div class="row">
+                        <div class="center">
+                            or login with:
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="btn white darken-4 col s10 m4">
+                                <a href="{% url 'social:begin' 'google-oauth2' %}" style="text-transform:none">
+                                <div class="left">
+                                    <img width="20px" alt="Google &quot;G&quot; Logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"/>
+                                </div>
+                                Google
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-              <div class="row">
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix white">lock_open</i>
-                        {{ Login_form.Password|add_class:"validate" }}
-                        <label class="white" for="{{ Login_form.Password.id_for_label }}">Password</label>
-                        {% if Login_form.Password.help_text %}
-                            <span class="helper-text" data-error="wrong"
-                                  data-success="right">{{ Login_form.Password.help_text }}</span>
-                        {% endif %}
-                        {% if Login_form.Password.errors %}
-                            <span class="helper-text red-text"
-                                  style="font-size:large">{{ Login_form.Password.errors }}</span>
-                        {% endif %}
-                    </div>
-                </div>
-              </div>
             </div>
-            <div class=row>
-              <div class=''>
-                <div class="section center">
-                    <button type="submit" class="btn btn-outline-info register_btn">Login</button>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-                <a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a>
-            </div>
-          </form>
         </div>
-      </div>
     </div>
-  </div>
 </div>
-    <div class='row'>
-      <div class='col s4 offset-s8'>
-        <a href="{% url 'password_reset' %}">
-            Forgot password?
-        </a>
-      </div>
-    </div>
-<div class='divider'></div>
-    <div class='row'>
-      <div class='col s4 offset-s8'>
-        Don't have an account? <a href="{% url 'Users-Register' %}">Register here</a>
-      </div>
-    </div>
+
 {% endblock body %}
