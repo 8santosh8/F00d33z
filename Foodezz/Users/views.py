@@ -1,10 +1,17 @@
 from django.contrib.auth import authenticate, login
+from django.contrib.sites.shortcuts import get_current_site
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from django.template.loader import render_to_string
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_bytes, force_text
+from .tokens import account_activation_token
 from Users.forms import C_Login
 from . import forms
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.core.mail import EmailMessage
 
 def Register(request):
     if request.user.is_authenticated:
@@ -29,16 +36,54 @@ def Register(request):
                 return render(request, 'Users/Register.html', {'User_Form1': User_Form1, 'User_Details1':User_Details1})
 
             username = User_Form1.cleaned_data.get('username')
-            messages.success(request, f'Account created for {username}!')
-            newuser_basic = User_Form1.save()
+            newuser_basic = User_Form1.save(commit=False)
+            newuser_basic.is_active = False
+            newuser_basic.save()
             newuser = User_Details1.save(commit=False)
             newuser.User = newuser_basic
             newuser.save()
+            current_site = get_current_site(request)
+            mail_subject = 'Activate your blog account.'
+            message = render_to_string('Users/acc_active_email.html', {
+                'user': newuser_basic,
+                'domain': current_site.domain,
+                # 'uid': urlsafe_base64_encode(force_bytes(newuser_basic.pk)),
+                'uid': newuser_basic.pk,
+                'token': account_activation_token.make_token(newuser_basic),
+            })
+            to_email = User_Form1.cleaned_data.get('email')
+            email = EmailMessage(
+                mail_subject, message, to=[to_email]
+            )
+            email.send()
+            messages.success(request, f'confirm your mail to complete registration for {username}!')
             return redirect('Users-Login')
     else:
         User_Form1 = forms.UserForm()
         User_Details1 = forms.User_Details()
     return render(request, 'Users/Register.html', {'User_Form1': User_Form1, 'User_Details1':User_Details1})
+
+
+def activateAccout(request, uidb64, token):
+    try:
+        print(uidb64 + "   " + token)
+        # uid = force_text(urlsafe_base64_decode(uidb64))
+        print(int(uidb64))
+        uid = uidb64
+        user = User.objects.get(pk=int(uid))
+
+    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+    if user is not None:
+        if account_activation_token.check_token(user, token):
+            user.is_active = True
+            user.save()
+            messages.success(request, f'Account created successfully!')
+            return redirect('Users-Home')
+        else:
+            return HttpResponse('Didnt match the token')
+    else:
+        return HttpResponse('Activation link is invalid!')
 
 def Home(request):
     return render(request,'Users/Home.html',)
@@ -106,3 +151,5 @@ def RestLogin(request):
     else:
         Rest_Login_Form = C_Login()
     return render(request,'Users/Rest-Login.html',{'Login_form':Rest_Login_Form})
+
+

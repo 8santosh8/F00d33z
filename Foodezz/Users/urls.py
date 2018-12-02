@@ -1,4 +1,5 @@
 from django.urls import path, include
+from django.conf.urls import url
 from . import views
 from django.contrib.auth import views as auth_views
 from django.conf.urls.static import static
@@ -8,6 +9,10 @@ urlpatterns = [
     ## Path for registrations of users
     path('Register/',views.Register,name='Users-Register'),
     path('',views.Home,name='Users-Home'),
+
+    ## Paths for Email verification
+    path(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+        views.activateAccout, name='Users-Activate'),
 
     ### Paths for the password reset
     path('Password-Reset/', auth_views.PasswordResetView.as_view(template_name='Users/Password-Reset.html'),
