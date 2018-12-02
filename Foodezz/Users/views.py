@@ -43,7 +43,7 @@ def Register(request):
             newuser.User = newuser_basic
             newuser.save()
             current_site = get_current_site(request)
-            mail_subject = 'Activate your blog account.'
+            mail_subject = 'Activate your Food3zz account.'
             message = render_to_string('Users/acc_active_email.html', {
                 'user': newuser_basic,
                 'domain': current_site.domain,
