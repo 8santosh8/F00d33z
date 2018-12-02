@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order</title>
+</head>
+    <body>
+        <form method="POST" action="{% url 'result' %}">{% csrf_token %}
+            name:<input type="text" name="fullname"><br>
+            email:<input type="email" name="email"><br>
+            m1:<input type="number" name="m1"><br>
+            x1:<input type="number" name="x1"><br>
+            m3:<input type="number" name="m2"><br>
+            x2:<input type="number" name="x2"><br>
+            <input type="submit">
+        </form>
+    </body>
+</html>
