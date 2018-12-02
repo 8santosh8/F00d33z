@@ -185,6 +185,7 @@ def post_delete(request, id):
 def user_login(request):
 	if(request.method=='POST')	:
 		form = UserLoginForm(request.POST)
+		
 		if(form.is_valid()):
 			username = request.POST['username']
 			password = request.POST['password']
