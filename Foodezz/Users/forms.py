@@ -36,3 +36,8 @@ class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = UserModels.User_Profile
         fields = ('phone','address','street','city','pincode','image')
+
+class ChangePasswordform(forms.Form):
+    Current_password = forms.CharField(widget=forms.PasswordInput,required=True)
+    new_Password = forms.CharField(widget=forms.PasswordInput,required=True)
+    Re_Password = forms.CharField(widget=forms.PasswordInput,required=True)

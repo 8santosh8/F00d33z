@@ -144,7 +144,7 @@ def RestLogin(request):
                 return redirect('Users-Home')
             else:
                 messages.error(request, f'Account not in active state')
-                return redirect('User-Login')
+                return redirect('Users-Login')
         else:
             messages.error(request, f'Invalid login details')
             Rest_Login_Form = C_Login(request.POST)
@@ -152,4 +152,35 @@ def RestLogin(request):
         Rest_Login_Form = C_Login()
     return render(request,'Users/Rest-Login.html',{'Login_form':Rest_Login_Form})
 
+@login_required
+def ChangePassword(request):
+    if request.method == 'POST':
+        ChangePassForm = forms.ChangePasswordform(request.POST)
+                                                                            # validate the password given
+        pword = request.POST.get('Current_password')
+        print('got password')
+        uname = request.user.username
+        print('got username')
+        user = authenticate(username=uname,password=pword)
 
+        if user == request.user:
+                                                                                            # Check same password in both fields
+            new_Password = request.POST.get('new_Password')
+            new_Password1 = request.POST.get('Re_Password')
+
+            if new_Password is not new_Password1:
+                                                                                            # Change the password for the user and logout.
+                user.set_password(new_Password)
+                user.save()
+                messages.success(request, f"Password successfully changed, now login to your account")
+                return redirect('Users-Login')
+
+            else:
+                messages.error(request, f"Passwords didn't match")
+
+        else:
+            messages.error(request,f'User can not be found')
+
+    else:
+        ChangePassForm = forms.ChangePasswordform()
+    return render(request,'Users/ChangePassword.html',{'ChangePassForm':ChangePassForm})

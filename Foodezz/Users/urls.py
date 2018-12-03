@@ -27,6 +27,7 @@ urlpatterns = [
 
     ## Path for editing profile
     path('Profile/',views.Profile,name='Users-Profile'),
+    path('ChangePassword/',views.ChangePassword,name='Users-ChangePassword'),
 
     ## Path for Login and Logout
     path('Login/', views.Login, name='Users-Login'),
