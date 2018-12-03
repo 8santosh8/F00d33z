@@ -1,5 +1,6 @@
 {% extends 'Users/Base.html' %}
 {% load crispy_forms_tags %}
+{% load widget_tweaks %}
 
 {% block head %}
     <title>
@@ -17,7 +18,7 @@
            </div>
        </div>
    </div>
-    <form method="POST" enctype="multipart/form-data">
+    <!-- <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="col-md-12" style="text-align: center">
             Update your profile
@@ -36,5 +37,171 @@
                 Already have an account? <a class="ml-2" href="#">Login</a>
             </small>
         </div>
-    </form>
+    </form> -->
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <form class="" method="POST">
+                    {% csrf_token %}
+                    <div class="card-panel hoverable">
+                        <div class="row">
+                            <div class="section">
+                                <div class="col s4 offset-s1">
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <i class="material-icons prefix white">person</i>
+                                            {{ u_form.username|add_class:"validate" }}
+                                            <label class="white" for="{{ u_form.username.id_for_label }}">Username</label>
+                                            {% if u_form.username.help_text %}
+                                                <span class="helper-text" data-error="wrong"
+                                                data-success="right">{{ u_form.username.help_text }}</span>
+                                            {% endif %}
+                                            {% if u_form.username.errors %}
+                                                <span class="helper-text red-text"
+                                                style="font-size:large">{{ u_form.username.errors }}</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <i class="material-icons prefix white">person</i>
+                                            {{ u_form.first_name|add_class:"validate" }}
+                                            <label class="white" for="{{ u_form.first_name.id_for_label }}">First name</label>
+                                            {% if u_form.first_name.help_text %}
+                                                <span class="helper-text" data-error="wrong"
+                                                data-success="right">{{ u_form.first_name.help_text }}</span>
+                                            {% endif %}
+                                            {% if u_form.first_name.errors %}
+                                                <span class="helper-text red-text"
+                                                style="font-size:large">{{ u_form.first_name.errors }}</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <i class="material-icons prefix white">person</i>
+                                            {{ u_form.last_name|add_class:"validate" }}
+                                            <label class="white" for="{{ u_form.last_name.id_for_label }}">Last name</label>
+                                            {% if u_form.last_name.help_text %}
+                                                <span class="helper-text" data-error="wrong"
+                                                data-success="right">{{ u_form.last_name.help_text }}</span>
+                                            {% endif %}
+                                            {% if u_form.last_name.errors %}
+                                                <span class="helper-text red-text"
+                                                style="font-size:large">{{ u_form.last_name.errors }}</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <i class="material-icons prefix white">person</i>
+                                            {{ u_form.email|add_class:"validate" }}
+                                            <label class="white" for="{{ u_form.email.id_for_label }}">Email</label>
+                                            {% if u_form.email.help_text %}
+                                                <span class="helper-text" data-error="wrong"
+                                                data-success="right">{{ u_form.email.help_text }}</span>
+                                            {% endif %}
+                                            {% if u_form.email.errors %}
+                                                <span class="helper-text red-text"
+                                                style="font-size:large">{{ u_form.email.errors }}</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col s4 offset-s2">
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <i class="material-icons prefix white">person</i>
+                                            {{ p_form.phone|add_class:"validate" }}
+                                            <label class="white" for="{{ p_form.phone.id_for_label }}">Phone</label>
+                                            {% if p_form.phone.help_text %}
+                                                <span class="helper-text" data-error="wrong"
+                                                data-success="right">{{ p_form.phone.help_text }}</span>
+                                            {% endif %}
+                                            {% if p_form.phone.errors %}
+                                                <span class="helper-text red-text"
+                                                style="font-size:large">{{ p_form.phone.errors }}</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <i class="material-icons prefix white">person</i>
+                                            {{ p_form.address|add_class:"validate" }}
+                                            <label class="white" for="{{ p_form.address.id_for_label }}">Address</label>
+                                            {% if p_form.address.help_text %}
+                                                <span class="helper-text" data-error="wrong"
+                                                data-success="right">{{ p_form.address.help_text }}</span>
+                                            {% endif %}
+                                            {% if p_form.address.errors %}
+                                                <span class="helper-text red-text"
+                                                style="font-size:large">{{ p_form.address.errors }}</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <i class="material-icons prefix white">person</i>
+                                            {{ p_form.street|add_class:"validate" }}
+                                            <label class="white" for="{{ p_form.street.id_for_label }}">Street</label>
+                                            {% if p_form.street.help_text %}
+                                                <span class="helper-text" data-error="wrong"
+                                                data-success="right">{{ p_form.street.help_text }}</span>
+                                            {% endif %}
+                                            {% if p_form.street.errors %}
+                                                <span class="helper-text red-text"
+                                                style="font-size:large">{{ p_form.street.errors }}</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <i class="material-icons prefix white">person</i>
+                                            {{ p_form.city|add_class:"validate" }}
+                                            <label class="white" for="{{ p_form.city.id_for_label }}">City</label>
+                                            {% if p_form.city.help_text %}
+                                                <span class="helper-text" data-error="wrong"
+                                                data-success="right">{{ p_form.city.help_text }}</span>
+                                            {% endif %}
+                                            {% if p_form.city.errors %}
+                                                <span class="helper-text red-text"
+                                                style="font-size:large">{{ p_form.city.errors }}</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <i class="material-icons prefix white">person</i>
+                                            {{ p_form.pincode|add_class:"validate" }}
+                                            <label class="white" for="{{ p_form.pincode.id_for_label }}">Pin Code</label>
+                                            {% if p_form.pincode.help_text %}
+                                                <span class="helper-text" data-error="wrong"
+                                                data-success="right">{{ p_form.pincode.help_text }}</span>
+                                            {% endif %}
+                                            {% if p_form.pincode.errors %}
+                                                <span class="helper-text red-text"
+                                                style="font-size:large">{{ p_form.pincode.errors }}</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="image">
+                                            {{ p_form.image|add_class:'validate' }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section">
+                        </div>
+                        <div class="row">
+                            <div class="col s3 offset-s5">
+                                <button type="submit" class="btn btn-outline-info register_btn">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 {% endblock body %}
