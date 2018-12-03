@@ -1,5 +1,6 @@
 {% extends 'Users/Base.html' %}
 {% load crispy_forms_tags %}
+{% load widget_tweaks %}
 
 {% block head %}
     <title>
@@ -8,7 +9,7 @@
 {% endblock head %}
 
 {% block body %}
-<div class="container">
+<!-- <div class="container">
             <div class="row">
                 <form method="post" action="" autocomplete="off">
                     {% csrf_token %}
@@ -21,5 +22,74 @@
         <a href="{% url 'password_reset' %}">
             Forgot password?
         </a>
+        </div> -->
+        <div class="container">
+            <div class="row">
+                <div class="col  s5">
+                    <div class="section">
+                        <div class="card-panel hoverable">
+                            <form class="" action="" method="POST">
+                                <div class="row">
+                                    <div class="container">
+                                        {% if Login_form.non_field_errors %}
+                                            <span class="red-text">{{ form.non_field_errors }}</span>
+                                        {% endif %}
+                                        {% csrf_token %}
+                                        {% for hidden in Login_form.hidden_fields %}
+                                            {{ hidden }}
+                                        {% endfor %}
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s11">
+                                            <i class="material-icons prefix white">person</i>
+                                            {{ Login_form.Username|add_class:'validate' }}
+                                            <label class="white" for="{{ Login_form.Username.id_for_label }}">Username</label>
+                                            {% if Login_form.Username.help_text %}
+                                                <span class="helper-text" data-error="wrong"
+                                                data-success="right">{{ Login_form.Username.help_text }}</span>
+                                            {% endif %}
+                                            {% if Login_form.Username.errors %}
+                                                <span class="helper-text red-text"
+                                                style="font-size:large">{{ Login_form.Username.errors }}</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s11">
+                                            <i class="material-icons prefix white">lock_open</i>
+                                            {{ Login_form.Password|add_class:"validate" }}
+                                            <label class="white" for="{{ Login_form.Password.id_for_label }}">Password</label>
+                                            {% if Login_form.Password.help_text %}
+                                                <span class="helper-text" data-error="wrong"
+                                                data-success="right">{{ Login_form.Password.help_text }}</span>
+                                            {% endif %}
+                                            {% if Login_form.Password.errors %}
+                                                <span class="helper-text red-text"
+                                                style="font-size:large">{{ Login_form.Password.errors }}</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class='row'>
+                                        <div class='col s12'>
+                                            <div class="right">
+                                                <a href="{% url 'password_reset' %}">
+                                                    Forgot password?
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class=row>
+                                        <div class=''>
+                                            <div class="center">
+                                                <button type="submit" class="btn btn-outline-info register_btn">Login</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 {% endblock body %}
