@@ -11,7 +11,8 @@ from . import forms
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMessage, send_mail
+from Foodezz.settings import EMAIL_HOST_USER
 
 def Register(request):
     if request.user.is_authenticated:
@@ -158,22 +159,37 @@ def ChangePassword(request):
         ChangePassForm = forms.ChangePasswordform(request.POST)
                                                                             # validate the password given
         pword = request.POST.get('Current_password')
-        print('got password')
+        # print('got password')
         uname = request.user.username
-        print('got username')
+        # print('got username')
         user = authenticate(username=uname,password=pword)
 
         if user == request.user:
                                                                                             # Check same password in both fields
             new_Password = request.POST.get('new_Password')
+            # print(new_Password)
             new_Password1 = request.POST.get('Re_Password')
+            # print(new_Password1)
 
-            if new_Password is not new_Password1:
-                                                                                            # Change the password for the user and logout.
-                user.set_password(new_Password)
-                user.save()
-                messages.success(request, f"Password successfully changed, now login to your account")
-                return redirect('Users-Login')
+            if new_Password == new_Password1:
+
+                if len(new_Password) <= 4:                                              # Check for password meets the minimum security
+                    messages.error(request, f'Password should more then 4 characters')
+                    return redirect('Users-ChangePassword')
+
+                else:
+                    user.set_password(new_Password)                                                # Change the password for the user and logout.
+                    user.save()
+
+                                                                                                    # Mail the user about the change in password
+                    mail_subject = "Hi, "+ user.username + " alert for Food3zz account"
+                    message = "Your Food3zz account password has been changed. /nIf you didn't change the password you can always go to our home page and reset your password."
+                    mail_address = user.email
+                    # print(user.email)
+                    send_mail(mail_subject, message, 'EMAIL_HOST_USER',[mail_address], fail_silently=True)
+
+                    messages.success(request, f"Password successfully changed, now login to your account")
+                    return redirect('Users-Login')
 
             else:
                 messages.error(request, f"Passwords didn't match")
