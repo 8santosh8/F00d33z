@@ -119,6 +119,21 @@
 }
 
 
+.location{
+  background-color: rgb(3, 95, 60);
+  height:90px;
+  margin-bottom:-80px;
+}
+
+.locations{
+    text-decoration: none;
+    color: yellow;
+    font-size: 30px;
+    padding: 20px 30px;
+
+}
+
+
 @-webkit-keyframes fade {
     0%{
       opacity: 1;
@@ -186,10 +201,121 @@
 
 
 
+._2tnu- {
+    background: #2b1e16;
+    padding: 0 20px;
+}
+
+._2RZDN {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding-bottom: 80px;
+    max-width: 1200px;
+    min-width: 1200px;
+    margin: 0 auto;
+}
+
+._2RZDN, ._2Zn3W {
+  position: relative;
+}
+
+._2Zn3W {
+    color: #fff;
+    text-align: center;
+}
+
+._1Vw_y {
+    height: 250px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: end;
+    align-items: flex-end;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+._2dYjq {
+    margin-bottom: 42px;
+}
+
+._3fted {
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 0;
+}
+
+._12i5X {
+    font-size: 15px;
+    width: 260px;
+    margin-top: 10px;
+    color: #e0cbc1;
+    line-height: 1.3;
+}
+
+._2RZDN, ._2Zn3W {
+    position: relative;
+}
+
+._2Zn3W {
+    color: #fff;
+    text-align: center;
+}
+
+._1Vw_y {
+    height: 250px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: end;
+    align-items: flex-end;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
 
 
 
 
+
+
+
+
+
+
+
+.whI9o {
+    background: #fc8019;
+    padding: 0 20px;
+    margin-bottom: 0px;
+}
+
+._2hoYp {
+    padding: 32px 0;
+    max-width: 1200px;
+    min-width: 1200px;
+    position: relative;
+    margin: 0 auto;
+}
+
+._2cN-j {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.nl7Rm:not(:last-child) {
+    margin-right: 40px;
+}
+
+.nl7Rm {
+    font-size: 18px;
+    font-weight: 400;
+    color: #fff;
+    position: relative;
+}
 
 
 
@@ -231,13 +357,11 @@
 	overflow: hidden;
 }
 
-/* Footer left */
 
 .footer-distributed .footer-left{
 	float: left;
 }
 
-/* The company logo */
 
 .footer-distributed h3{
 	color:  #ffffff;
@@ -249,7 +373,7 @@
 	color:  #5383d3;
 }
 
-/* Footer links */
+
 
 .footer-distributed .footer-links{
 	color:  #ffffff;
@@ -271,7 +395,7 @@
 	margin: 0;
 }
 
-/* Footer social icons */
+
 
 .footer-distributed .footer-icons{
 	margin-top: 40px;
@@ -294,7 +418,7 @@
 	margin-bottom: 5px;
 }
 
-/* Footer Right */
+
 
 .footer-distributed .footer-right{
 	float: right;
@@ -307,7 +431,7 @@
 	color: #ffffff;
 }
 
-/* The contact form */
+
 
 .footer-distributed form{
 	display: inline-block;
@@ -550,8 +674,8 @@
 
 .footer-distributed .footer-icons a{
 	display: inline-block;
-	width: 35px;
-	height: 35px;
+	width: 95px;
+	height: 75px;
 	cursor: pointer;
 	background-color:  #33383b;
 	border-radius: 2px;
