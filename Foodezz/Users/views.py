@@ -13,6 +13,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage, send_mail
 from Foodezz.settings import EMAIL_HOST_USER
+from django.http import Http404
 
 def Register(request):
     if request.user.is_authenticated:
@@ -114,7 +115,7 @@ def Login(request):
     return render(request,'Users/Login.html',{'Login_form':Log_form})
 
 @login_required
-def Profile(request):
+def Profile(request,username):
     if request.method == 'POST':
         u_form = forms.UserUpdateForm(request.POST, instance=request.user)
         p_form = forms.ProfileUpdateForm(request.POST, request.FILES, instance=request.user.user_profile)

@@ -26,7 +26,7 @@ urlpatterns = [
          name='password_reset_complete'),
 
     ## Path for editing profile
-    path('Profile/',views.Profile,name='Users-Profile'),
+    path('Profile/<username>',views.Profile,name='Users-Profile'),
     path('ChangePassword/',views.ChangePassword,name='Users-ChangePassword'),
 
     ## Path for Login and Logout

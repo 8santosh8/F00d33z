@@ -53,7 +53,7 @@
                             <a href="#">Hi ,{{ user.username }}</a>
                             <ul class="subnav">
                                 <li><a href="#">My Cart</a></li>
-                                <li><a href="{% url 'Users-Profile' %}">Profile</a></li>
+                                <li><a href="{% url 'Users-Profile' user.username %}">Profile</a></li>
                                 <li><a href="{% url 'Users-ChangePassword' %}">Change password</li>
                                 <li><a href="{% url 'Users-Logout' %}">Logout</a></li>
                             </ul>
