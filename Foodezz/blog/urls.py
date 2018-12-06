@@ -1,4 +1,4 @@
-"""Foodezz URL Configuration
+"""mysite URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.1/topics/http/urls/
@@ -13,11 +13,16 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
+from blog import views
+
+app_name = "blog"
 
 urlpatterns = [
-    path('blog/', include('blog.urls')),
-    path('',include('Users.urls')),
-    path('admin/', admin.site.urls),
+    path('', views.post_list, name='post_list'),
+    path('<int:id>/post_edit/',views.post_edit, name='post_edit'),
+    path('<int:id>/<slug:slug>/', views.post_detail, name='post_detail'),
+    path('post_create/', views.post_create, name='post_create'),
+    path('post_delete/<int:id>/',views.post_delete, name='post_delete'),
+    path('like/', views.like_post, name='like_post'),
 ]

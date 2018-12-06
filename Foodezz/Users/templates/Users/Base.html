@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="{% static 'Materialize/CSS/materialize.css' %}">
 {#        <link rel="stylesheet" href="{% static 'Login/CSS/header.css' %}">#}
         <link rel="stylesheet" href="{% static 'Login/CSS/Googleicon.css' %}">
-        <link rel="stylesheet" href="{% static "Login/CSS/Karthik_header.css" %}">
+        <link rel="stylesheet" href="{% static "Login/CSS/karthik_header.css" %}">
 
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -174,7 +174,7 @@
                     <p class="footer-links">
                         <a href="{% url 'Users-Home' %}">Home</a>
                         ·
-                        <a href="#">Blog</a>
+                        <a href="{% url "blog:post_list" %}">Blog</a>
                         ·
                         <a href="#">About</a>
                         ·

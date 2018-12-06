@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'social_django',
     'materialize',
     'widget_tweaks',
+    'blog',
 
 ]
 
