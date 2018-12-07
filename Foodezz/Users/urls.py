@@ -11,7 +11,7 @@ urlpatterns = [
     path('',views.Home,name='Users-Home'),
 
     ## Paths for Email verification
-    path(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+    path('activate/<uidb64>/<token>/',
         views.activateAccout, name='Users-Activate'),
 
     ### Paths for the password reset
