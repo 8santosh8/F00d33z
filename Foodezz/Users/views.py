@@ -68,9 +68,9 @@ def Register(request):
 
 def activateAccout(request, uidb64, token):
     try:
-        print(uidb64 + "   " + token)
+        # print(uidb64 + "   " + token)
         # uid = force_text(urlsafe_base64_decode(uidb64))
-        print(int(uidb64))
+        # print(int(uidb64))
         uid = uidb64
         user = User.objects.get(pk=int(uid))
 
@@ -89,6 +89,9 @@ def activateAccout(request, uidb64, token):
 
 
 def Home(request):
+    if request.user.is_authenticated:
+        if not hasattr(request.user, 'user_profile'):
+            return redirect('Users-AddDetails')
     return render(request,'Users/Home.html',)
 
 def Login(request):
