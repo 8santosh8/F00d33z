@@ -9,9 +9,10 @@ urlpatterns = [
     ## Path for registrations of users
     path('Register/',views.Register,name='Users-Register'),
     path('',views.Home,name='Users-Home'),
+    path('AddDetails/',views.AddDetails, name='Users-AddDetails'),          # Adding details when login from google
 
     ## Paths for Email verification
-    path(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+    path('activate/<uidb64>/<token>/',
         views.activateAccout, name='Users-Activate'),
 
     ### Paths for the password reset

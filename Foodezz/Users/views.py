@@ -13,6 +13,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage, send_mail
 from Foodezz.settings import EMAIL_HOST_USER
+from . import decorators
 
 def Register(request):
     if request.user.is_authenticated:
@@ -67,9 +68,9 @@ def Register(request):
 
 def activateAccout(request, uidb64, token):
     try:
-        print(uidb64 + "   " + token)
+        # print(uidb64 + "   " + token)
         # uid = force_text(urlsafe_base64_decode(uidb64))
-        print(int(uidb64))
+        # print(int(uidb64))
         uid = uidb64
         user = User.objects.get(pk=int(uid))
 
@@ -86,7 +87,11 @@ def activateAccout(request, uidb64, token):
     else:
         return HttpResponse('Activation link is invalid!')
 
+
 def Home(request):
+    if request.user.is_authenticated:
+        if not hasattr(request.user, 'user_profile'):
+            return redirect('Users-AddDetails')
     return render(request,'Users/Home.html',)
 
 def Login(request):
@@ -113,26 +118,26 @@ def Login(request):
         Log_form = C_Login()
     return render(request,'Users/Login.html',{'Login_form':Log_form})
 
-@login_required
+@decorators.Details_Required
 def Profile(request,username):
+    if not hasattr(request.user, 'user_profile'):
+        return redirect('Users-AddDetails')
     if request.method == 'POST':
         u_form = forms.UserUpdateForm(request.POST, instance=request.user)
         p_form = forms.ProfileUpdateForm(request.POST, files=request.FILES, instance=request.user.user_profile)
-        i_form = forms.ProfileImageUpdateForm(request.POST, files=request.FILES, instance=request.user.user_profile)
 
-        if u_form.is_valid() and p_form.is_valid() and i_form.is_valid():
+        if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
-            i_form.save()
             messages.success(request, f'Your account has been updated successfully!')
             return redirect('Users-Profile',request.user.username)
 
     else:
         u_form = forms.UserUpdateForm(instance= request.user)
         p_form = forms.ProfileUpdateForm(instance= request.user.user_profile)
-        i_form = forms.ProfileImageUpdateForm(instance= request.user.user_profile)
 
-    return render(request,'Users/Profile.html',{'u_form':u_form,'p_form':p_form,'i_form':i_form})
+    return render(request,'Users/Profile.html',{'u_form':u_form,'p_form':p_form,})
+
 
 def RestLogin(request):
     if request.user.is_authenticated:
@@ -157,7 +162,7 @@ def RestLogin(request):
         Rest_Login_Form = C_Login()
     return render(request,'Users/Rest-Login.html',{'Login_form':Rest_Login_Form})
 
-@login_required
+@decorators.Details_Required
 def ChangePassword(request):
     if request.method == 'POST':
         ChangePassForm = forms.ChangePasswordform(request.POST)
@@ -204,3 +209,23 @@ def ChangePassword(request):
     else:
         ChangePassForm = forms.ChangePasswordform()
     return render(request,'Users/ChangePassword.html',{'ChangePassForm':ChangePassForm})
+
+@login_required
+def AddDetails(request):
+    if not hasattr(request.user, 'user_profile'):
+        if request.method == 'POST':
+            p_form = forms.ProfileUpdateForm(request.POST,request.FILES)
+            if p_form.is_valid():
+                newUser = p_form.save(commit=False)
+                newUser.User = request.user
+                newUser.save()
+                messages.success(request, f"User details added successfully")
+                return redirect('Users-Home')
+            else:
+                messages.error(request,f"User details invalid")
+        else:
+            p_form = forms.ProfileUpdateForm()
+
+        return render(request,'Users/AddDetails.html',{'p_form':p_form,})
+    else:
+        return redirect('Users-Profile', request.user.username)
