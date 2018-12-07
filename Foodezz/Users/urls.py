@@ -9,6 +9,7 @@ urlpatterns = [
     ## Path for registrations of users
     path('Register/',views.Register,name='Users-Register'),
     path('',views.Home,name='Users-Home'),
+    path('AddDetails/',views.AddDetails, name='Users-AddDetails'),          # Adding details when login from google
 
     ## Paths for Email verification
     path('activate/<uidb64>/<token>/',

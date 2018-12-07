@@ -115,24 +115,23 @@ def Login(request):
 
 @login_required
 def Profile(request,username):
+    if not hasattr(request.user, 'user_profile'):
+        return redirect('Users-AddDetails')
     if request.method == 'POST':
         u_form = forms.UserUpdateForm(request.POST, instance=request.user)
         p_form = forms.ProfileUpdateForm(request.POST, files=request.FILES, instance=request.user.user_profile)
-        i_form = forms.ProfileImageUpdateForm(request.POST, files=request.FILES, instance=request.user.user_profile)
 
-        if u_form.is_valid() and p_form.is_valid() and i_form.is_valid():
+        if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
-            i_form.save()
             messages.success(request, f'Your account has been updated successfully!')
             return redirect('Users-Profile',request.user.username)
 
     else:
         u_form = forms.UserUpdateForm(instance= request.user)
         p_form = forms.ProfileUpdateForm(instance= request.user.user_profile)
-        i_form = forms.ProfileImageUpdateForm(instance= request.user.user_profile)
 
-    return render(request,'Users/Profile.html',{'u_form':u_form,'p_form':p_form,'i_form':i_form})
+    return render(request,'Users/Profile.html',{'u_form':u_form,'p_form':p_form,})
 
 def RestLogin(request):
     if request.user.is_authenticated:
@@ -204,3 +203,23 @@ def ChangePassword(request):
     else:
         ChangePassForm = forms.ChangePasswordform()
     return render(request,'Users/ChangePassword.html',{'ChangePassForm':ChangePassForm})
+
+@login_required
+def AddDetails(request):
+    if not hasattr(request.user, 'user_profile'):
+        if request.method == 'POST':
+            p_form = forms.ProfileUpdateForm(request.POST,request.FILES)
+            if p_form.is_valid():
+                newUser = p_form.save(commit=False)
+                newUser.User = request.user
+                newUser.save()
+                messages.success(request, f"User details added successfully")
+                return redirect('Users-Home')
+            else:
+                messages.error(request,f"User details invalid")
+        else:
+            p_form = forms.ProfileUpdateForm()
+
+        return render(request,'Users/AddDetails.html',{'p_form':p_form,})
+    else:
+        return redirect('Users-Profile', request.user.username)

@@ -33,9 +33,10 @@ class UserUpdateForm(forms.ModelForm):
         fields = ('username','first_name','last_name','email')
 
 class ProfileUpdateForm(forms.ModelForm):
+    image = forms.ImageField(required = False)
     class Meta:
         model = UserModels.User_Profile
-        fields = ('phone','address','street','city','pincode',)
+        fields = ('phone','address','street','city','pincode','image')
 
 class ProfileImageUpdateForm(forms.ModelForm):
     image = forms.ImageField(required=False)
