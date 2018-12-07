@@ -16,10 +16,11 @@ class User_Details(forms.ModelForm):
     address = forms.CharField(widget=forms.Textarea)
     pincode = forms.DecimalField(widget=forms.TextInput,max_digits=6)
     phone = forms.DecimalField(widget=forms.TextInput,max_digits=10)
+    image = forms.ImageField(required=False)
 
     class Meta:
         model = UserModels.User_Profile
-        fields = ('phone','address','street','city','pincode',)
+        fields = ('phone','address','street','city','pincode','image',)
 
 class C_Login(forms.Form):
     Username = forms.CharField(max_length=30)
