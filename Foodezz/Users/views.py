@@ -13,6 +13,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage, send_mail
 from Foodezz.settings import EMAIL_HOST_USER
+from . import decorators
 
 def Register(request):
     if request.user.is_authenticated:
@@ -86,6 +87,7 @@ def activateAccout(request, uidb64, token):
     else:
         return HttpResponse('Activation link is invalid!')
 
+
 def Home(request):
     return render(request,'Users/Home.html',)
 
@@ -113,7 +115,7 @@ def Login(request):
         Log_form = C_Login()
     return render(request,'Users/Login.html',{'Login_form':Log_form})
 
-@login_required
+@decorators.Details_Required
 def Profile(request,username):
     if not hasattr(request.user, 'user_profile'):
         return redirect('Users-AddDetails')
@@ -132,6 +134,7 @@ def Profile(request,username):
         p_form = forms.ProfileUpdateForm(instance= request.user.user_profile)
 
     return render(request,'Users/Profile.html',{'u_form':u_form,'p_form':p_form,})
+
 
 def RestLogin(request):
     if request.user.is_authenticated:
@@ -156,7 +159,7 @@ def RestLogin(request):
         Rest_Login_Form = C_Login()
     return render(request,'Users/Rest-Login.html',{'Login_form':Rest_Login_Form})
 
-@login_required
+@decorators.Details_Required
 def ChangePassword(request):
     if request.method == 'POST':
         ChangePassForm = forms.ChangePasswordform(request.POST)
