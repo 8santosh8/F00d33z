@@ -22,7 +22,7 @@ def Register(request):
         User_Form1 = forms.UserForm(request.POST)
         User_Details1 = forms.User_Details(request.POST,request.FILES)
         if User_Form1.is_valid() and User_Details1.is_valid():
-            print(User_Details1.cleaned_data.get('image'))
+            # print(User_Details1.cleaned_data.get('image'))
             if User.objects.filter(email = User_Form1.cleaned_data.get('email')).exists():
                 messages.error(request, f'Email already exists go to login page to login')
                 return render(request, 'Users/Register.html',
@@ -117,18 +117,24 @@ def Login(request):
 def Profile(request,username):
     if request.method == 'POST':
         u_form = forms.UserUpdateForm(request.POST, instance=request.user)
-        p_form = forms.ProfileUpdateForm(request.POST, request.FILES, instance=request.user.user_profile)
+        p_form = forms.ProfileUpdateForm(request.POST, files=request.FILES, instance=request.user.user_profile)
+        i_form = forms.ProfileImageUpdateForm(request.POST, files=request.FILES, instance=request.user.user_profile)
 
-        if u_form.is_valid() and p_form.is_valid():
+        if u_form.is_valid() and p_form.is_valid() and i_form.is_valid():
             u_form.save()
             p_form.save()
+            print(request.user.user_profile.image)
+            i_form.save()
+            print(request.user.user_profile.image)
             messages.success(request, f'Your account has been updated successfully!')
-            return redirect('Users-Profile')
+            return redirect('Users-Profile',request.user.username)
+
     else:
         u_form = forms.UserUpdateForm(instance= request.user)
         p_form = forms.ProfileUpdateForm(instance= request.user.user_profile)
+        i_form = forms.ProfileImageUpdateForm(instance= request.user.user_profile)
 
-    return render(request,'Users/Profile.html',{'u_form':u_form,'p_form':p_form})
+    return render(request,'Users/Profile.html',{'u_form':u_form,'p_form':p_form,'i_form':i_form})
 
 def RestLogin(request):
     if request.user.is_authenticated:

@@ -12,10 +12,6 @@
    <div class="content-section">
        <div class="media">
            <img class="responsive-img circle" src={{ user.user_profile.image.url }} alt= 'Smily face'>
-           <div class="media-body" >
-               <h2 class="account-heading">{{ user.username }}</h2>
-               <p class="text-secondary">{{ user.email }}</p>
-           </div>
        </div>
    </div>
     <!-- <form method="POST" enctype="multipart/form-data">
@@ -41,7 +37,7 @@
     <div class="container">
         <div class="row">
             <div class="col s12">
-                <form class="" method="POST">
+                <form class="" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="card-panel hoverable">
                         <div class="row">
@@ -185,9 +181,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="image">
-                                            {{ p_form.image|add_class:'validate' }}
-                                        </div>
+                                        {{ i_form }}
                                     </div>
                                 </div>
                             </div>
