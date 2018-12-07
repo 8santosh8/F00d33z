@@ -13,7 +13,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage, send_mail
 from Foodezz.settings import EMAIL_HOST_USER
-from django.http import Http404
 
 def Register(request):
     if request.user.is_authenticated:
