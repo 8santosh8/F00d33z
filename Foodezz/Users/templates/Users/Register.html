@@ -11,7 +11,7 @@
 {% block body %}
     <div class="card-panel hoverable">
         <div class="row">
-            <form method="POST">
+            <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class='row'>
 
@@ -200,6 +200,11 @@
                                       style="font-size:large">{{ User_Details1.pincode.errors }}</span>
                             {% endif %}
 
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            {{ User_Details1.image|add_class:"validate" }}
                         </div>
                     </div>
                     <div class="row">
