@@ -26,16 +26,21 @@ class C_Login(forms.Form):
     Password = forms.CharField(widget=forms.PasswordInput)
 
 class UserUpdateForm(forms.ModelForm):
-    email = forms.EmailField(widget=forms.EmailInput)
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'readonly':'readonly'}),)
     class Meta:
         model = User
         fields = ('username','first_name','last_name','email')
 
 class ProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model = UserModels.User_Profile
+        fields = ('phone','address','street','city','pincode',)
+
+class ProfileImageUpdateForm(forms.ModelForm):
     image = forms.ImageField(required=False)
     class Meta:
         model = UserModels.User_Profile
-        fields = ('phone','address','street','city','pincode','image')
+        fields = ('image',)
 
 class ChangePasswordform(forms.Form):
     Current_password = forms.CharField(widget=forms.PasswordInput,required=True)
