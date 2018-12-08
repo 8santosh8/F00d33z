@@ -5,7 +5,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('',views.Home,name='Hotel-Home'),
-
+    
 ]
 
 if settings.DEBUG:
