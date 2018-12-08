@@ -27,7 +27,7 @@ def Update(request):
                 foodname = item.foodname
                 price = request.POST[foodname+'_price']
                 availability=request.POST[foodname+'_availability']
-                RestaurantItems.objects.filter(restaurantid=rest_id, foodname=foodname).update(price=price,availability=availability)
+                RestaurantItems.objects.filter(restaurantid=rest, foodname=foodname).update(price=price,availability=availability)
             return redirect('Hotel-ItemView')
 
         elif request.POST['submit'] == 'Add New Item':
