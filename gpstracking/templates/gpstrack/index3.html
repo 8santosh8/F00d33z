@@ -6,12 +6,12 @@
     <title>orders</title>
     <link href="{% static "css/index3.css"%}" rel="stylesheet">
 </head>
-<body style="background: url({% static "image/flame-broiled-steak_4460x4460.jpg"%} )">
+<body>
+<div class="box">
 <form method = "POST" action="{% url 'gpstrack.maps' %}">
     {%  csrf_token %}
-    driver id : <br>
-    <input type="text" id="driverid" name="driverid"><br>
     <input type="submit" value ="submit">
 </form>
+</div>
 </body>
 </html>
