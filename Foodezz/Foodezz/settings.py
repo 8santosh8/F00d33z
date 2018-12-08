@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'Hotel.apps.HotelConfig',
     'Users.apps.UsersConfig',
     'crispy_forms',
     'django.contrib.admin',
@@ -43,7 +44,6 @@ INSTALLED_APPS = [
     'materialize',
     'widget_tweaks',
     'blog',
-
 ]
 
 MIDDLEWARE = [

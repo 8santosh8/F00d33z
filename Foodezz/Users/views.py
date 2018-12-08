@@ -118,7 +118,7 @@ def Login(request):
         Log_form = C_Login()
     return render(request,'Users/Login.html',{'Login_form':Log_form})
 
-@decorators.Details_Required
+@login_required
 def Profile(request,username):
     if not hasattr(request.user, 'user_profile'):
         return redirect('Users-AddDetails')
@@ -151,7 +151,7 @@ def RestLogin(request):
         if user and user.user_profile.rest == True:
             if user.is_active:
                 login(request, user)
-                return redirect('Users-Home')
+                return redirect('Hotel-Home')
             else:
                 messages.error(request, f'Account not in active state')
                 return redirect('Users-Login')

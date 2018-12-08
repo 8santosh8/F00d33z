@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+
+<head>
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Satisfy|Bree+Serif|Candal|PT+Sans">
+  <link href='https://fonts.googleapis.com/css?family=Amarante' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=Andika' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=Allura' rel='stylesheet'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="{% static "css/restupdate.css" %}">
+  <link rel="stylesheet" href="{% static "Login/CSS/karthik_header.css" %}">
+</head>
+
+<body>
+
+<script>
+        function food(name) {
+            document.getElementById('foodname').value=name
+        }
+        function delivery(id) {
+            document.getElementById('orderid').value=id
+            var delid=id.concat("_deliveryid")
+            document.getElementById("deliveryid").value=document.getElementById(delid).value
+        }
+    </script>
+
+  <!--banner-->
+  <ul class="nav">
+      <li id="settings">
+          <a href="{% url 'Users-Home' %}"><img src="{% static 'Login/Media/123.png' %}" height=100px width=200px/></a>
+      </li>
+      <li>
+          <a href="#">About Us</a>
+      </li>
+      <li id="search">
+          <form action="" method="get">
+              <input type="text" name="search_text" id="search_text" placeholder="Search"/>
+              <input type="button" name="search_button" id="search_button"></a>
+          </form>
+      </li>
+      {% if user.is_authenticated %}
+          <div class="right">
+              <li id="options">
+                  <a href="#">Hi ,{{ user.username }}</a>
+                  <ul class="subnav">
+                      <li><a href="#">My Cart</a></li>
+                      <li><a href="{% url 'Users-Profile' user.username %}">Profile</a></li>
+                      <li><a href="{% url 'Users-ChangePassword' %}">Change password</li>
+                      <li><a href="{% url 'Users-Logout' %}">Logout</a></li>
+                  </ul>
+              </li>
+          </div>
+      {% else %}
+          <div class="right">
+              <li>
+                  <a href="{% url 'Users-Login' %}">
+                      Login
+                  </a>
+              </li>
+              <li>
+                  <a href="{% url 'Users-Register' %}">
+                      Register
+                  </a>
+              </li>
+              <li>
+                  <a href="{% url 'Rest-Login' %}">
+                      Hotel Login
+                  </a>
+              </li>
+          </div>
+      {% endif %}
+  </ul>
+
+
+
+  <div style="padding:70px;margin-top:30px;">
+      <div class='container'>
+          <div class='row'>
+              <div class='col s4 offset-s4'>
+                  {% if messages %}
+                      {% for message in messages %}
+                          {% if message.tags == 'info' %}
+                              <div class='card blue lighten-1'>
+                                  <div class='center'>
+                                      {{ message }}
+                                  </div>
+                              </div>
+                          {% elif message.tags == 'success' %}
+                              <div class='card green lighten-1'>
+                                  <div class='center'>
+                                      {{ message }}
+                                  </div>
+                              </div>
+                          {% elif message.tags == 'error' %}
+                              <div class='card red lighten-1'>
+                                  <div class='center'>
+                                      {{ message }}
+                                  </div>
+                              </div>
+                          {% else %}
+                              <div class='card gray lighten-1'>
+                                  <div class='center'>
+                                      {{ message }}
+                                  </div>
+                              </div>
+                          {% endif %}
+                      {% endfor %}
+                  {% endif %}
+              </div>
+          </div>
+      </div>
+
+  <!-- / banner -->
+
+	<div class="row" style="margin-top:120px;background-color:#ffffff;margin-bottom:50px;">
+	   <div style="padding-left:10%;">
+			<h1 class="header-h"><u>Orders:</u></h1>
+	   </div>
+
+		<div class="food-menu" style="background-color:#A9A9A9">
+
+         <form method="POST" action="">
+         {% csrf_token %}
+             {% for order in orders %}
+
+                <span>Customer Id:</span>
+				<div style="margin-left:30%;">
+					<input class="values" type="text" name="{{ order.orderid }}_name" value="{{ order.orderid }}" readonly>
+				</div><br>
+				<span>Name:</span>
+				<div style="margin-left:30%;">
+					<input class="values" type="text" name="{{ order.customerid }}" value="{{ order.customerid }}" readonly>
+				</div><br>
+				<span>Address:</span>
+				<div style="margin-left:30%;">
+					<input class="values" type="text" name="food" value="Sri City" readonly>
+				</div><br>
+				<span>Food Name:</span>
+				<div style="margin-left:30%;">
+					<input class="values" type="text" name="{{ order.foodname }}" value="{{ order.foodname }}" readonly>
+				</div><br>
+				<span>Quantity:</span>
+				<div style="margin-left:30%;">
+					<input class="values" type="text" name="{{ order.quantity }}" value="{{ order.quantity }}" readonly>
+				</div><br>
+				<span>Status:</span>
+				<div style="margin-left:30%;">
+					<input class="values" type="text" name="{{ order.status }}" value="{{ order.status }}" readonly>
+				</div><br>
+				<span>Delivery Id:</span>
+				<div style="margin-left:30%;">
+					<input class="values" type="text" name="{{ order.orderid }}_deliveryid" id="{{ order.orderid }}_deliveryid" style="border:1px solid">
+				</div><br>
+				<input name="submit" id="{{ order.orderid }}" type="submit" value="assign deliveryid" onclick='delivery(this.id)'>
+				<span style="display:block;border-bottom:2px dotted black;margin-left:7%;margin-right:7%;margin-top:10px;width:1000px"></span>
+             {% endfor %}
+
+             {% for order in inpro %}
+                <span>Customer Id:</span>
+				<div style="margin-left:30%;">
+					<input class="values" type="text" name="{{ order.orderid }}_name" value="{{ order.orderid }}" readonly>
+				</div><br>
+				<span>Name:</span>
+				<div style="margin-left:30%;">
+					<input class="values" type="text" name="{{ order.customerid }}" value="{{ order.customerid }}" readonly>
+				</div><br>
+				<span>Address:</span>
+				<div style="margin-left:30%;">
+					<input class="values" type="text" name="food" value="Sri City" readonly>
+				</div><br>
+				<span>Food Name:</span>
+				<div style="margin-left:30%;">
+					<input class="values" type="text" name="{{ order.foodname }}" value="{{ order.foodname }}" readonly>
+				</div><br>
+				<span>Quantity:</span>
+				<div style="margin-left:30%;">
+					<input class="values" type="text" name="{{ order.quantity }}" value="{{ order.quantity }}" readonly>
+				</div><br>
+				<span>Status:</span>
+				<div style="margin-left:30%;">
+					<input class="values" type="text" name="{{ order.status }}" value="{{ order.status }}" readonly>
+				</div><br>
+				<span>Delivery Id:</span>
+				<div style="margin-left:30%;">
+					<input class="values" type="text" name="{{ order.orderid }}_deliveryid" id="{{ order.orderid }}_deliveryid" value="{{ order.deliveryid }}" style="border:1px solid">
+				</div><br>
+				<input name="submit" id="{{ order.orderid }}" type="submit" value="update deliveryid" onclick='delivery(this.id)'>
+				<span style="display:block;border-bottom:2px dotted black;margin-left:7%;margin-right:7%;margin-top:10px;width:1000px"></span>
+             {% endfor %}
+         <input id="orderid" name='orderid' type="text" hidden>
+         <input id="deliveryid" name='deliveryid' type="text" hidden>
+         </form>
+         </div>
+
+    </div>
+
+
+
+
+    <div class="row" style="background-color:#A9A9A9">
+        <form method="POST" action="{% url 'Hotel-Update' %}">
+         {% csrf_token %}
+	   <div style="padding-left:10%">
+			<h1 class="header-h"><u>Menu List:</u></h1>
+	   </div>
+
+		<div id="heading" style="position:sticky;top:0;color:black;">
+            <span style="font-family:Andika;margin-left:2%;font-size:30px">Food Items</span>
+			<span style="font-family:Andika;margin-left:11%;font-size:30px">Type</span>
+            <span style="font-family:Andika;margin-left:19%;font-size:30px">Price</span>
+			<span style="font-family:Andika;margin-left:17%;font-size:30px">Availability</span>
+		 </div>
+
+		<div class="food-menu">
+
+            {% for fooddata in food %}
+
+                <div class="menu">
+                    <input type="text" name="fname" style="margin-left:1%;" class="list" value="{{ fooddata.foodname }}" readonly>
+			        <input type="text" name="fname" style="margin-left:1%;" class="list" value="{{ fooddata.type }}" readonly>
+			        <input type="number" name="{{ fooddata.foodname }}_price" style="margin-left:12%;" class="list" value="{{ fooddata.price }}">
+			        <input type="number" name="{{ fooddata.foodname }}_availability" style="margin-left:13%;" class="list"  value="{{ fooddata.availability }}">
+			        <input style="margin-left:4%;" class="list" name="submit" id="{{ fooddata.foodname }}" type="submit" value="delete" onclick='food(this.id)'>
+		        </div>
+
+            {% endfor %}
+
+		</div>
+
+       <input id="foodname" name='foodname' type="text" hidden>
+       <div class="button">
+			<input type="submit" name="submit" style="border-radius:50px;margin-left:20%;font-size:20px;font-family:Amarante;" value="Update">
+			<input type="submit" name="submit" id="new" style="border-radius:50px;margin-left:10px;font-size:20px;font-family:Amarante;" value="Add New Item">
+        </div>
+
+       </form>
+
+  </div><br><br>
+
+
+  <!----add new--->
+
+
+  <section id="section-padding" style="margin-left:0px;visibility:hidden;margin-bottom:40px;background-color:#ffffff;width:100%;">
+	<div class="row" style="margin-left:10%;">
+		<div class="add" style="position:sticky;top:0;color:black;">
+            <span style="font-family:Andika;margin-left:1%;font-size:20px"><u>Food Item</u></span>
+			<span style="font-family:Andika;margin-left:11%;font-size:20px"><u>Type</u></span>
+            <span style="font-family:Andika;margin-left:17%;font-size:20px"><u>Price</u></span>
+			<span style="font-family:Andika;margin-left:18%;font-size:20px"><u>Availability</u></span>
+		 </div>
+		<div>
+            <input type="text" name="name" class="" style="border:1px solid;border-radius:5px">
+			<input type="radio" name="type" style="border:1px solid;border-radius:5px;margin-left:5%;color:black">Veg
+			<input type="radio" name="type" style="border:1px solid;border-radius:5px">Non-Veg
+			<input type="number" name="price" style="border:1px solid;border-radius:5px;margin-left:10%">
+			<input type="number" name="available" class="" style="border:1px solid;border-radius:5px;margin-left:10%">
+			<button class="add" id="add" style="background:transparent;border-radius:5px;border:1px solid">Add Item</button>
+        </div>
+	</div>
+  </section>
+
+  <!--/add new--->
+
+
+  <footer class="footer-distributed">
+      <div class="footer-left">
+            <h3>F00d3zz</h3>
+            <p class="footer-links">
+                <a href="{% url 'Users-Home' %}">Home</a>
+                ·
+                <a href="{% url "blog:post_list" %}">Blog</a>
+                ·
+                <a href="#">About</a>
+                ·
+                <a href="#">Contact</a>
+            </p>
+
+      <p class="footer-company-name">Food3zz &copy; 2018</p>
+
+          <div class="footer-icons">
+
+          <a href="#"><i class="fa fa-facebook"></i></a>
+          <a href="#"><i class="fa fa-twitter"></i></a>
+          <a href="#"><i class="fa fa-github"></i></a>
+
+          </div>
+
+      </div>
+
+  </footer>
+
+<script type="text/javascript"  src="{% static 'Materialize/JS/materialize.js' %}"></script>
+</body>
+</html>
+
+
+  <script src="https://code.jquery.com/jquery-2.1.1.js"></script>
+
+  <script>
+		$("#new").click(function() {
+			$("#section-padding").css("visibility","visible");
+		})
+
+		/*$("#done").click(function() {
+			$("#order").slideUp(200);
+			$("#order").css("visibility","hidden");
+
+		})*/
+
+		$("#add").click(function() {
+			$("#section-padding").slideUp(200);
+			$("#section-padding").slideDown(200);
+			$("#section-padding").css("visibility","hidden");
+		})
+
+  </script>
+
+</body>
+
+</html>
