@@ -14,7 +14,7 @@ class RestaurantLog(models.Model):
     restimage = models.ImageField(upload_to='restaurant/rest', blank=True)
 
     def __str__(self):
-        return self.manager + " managing hotel " + self.name
+        return str(self.manager) + " managing hotel " + self.name
 
 class RestaurantItems(models.Model):
     restaurantid=models.ForeignKey(RestaurantLog,on_delete=models.PROTECT)

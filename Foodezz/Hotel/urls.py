@@ -6,7 +6,8 @@ from django.conf import settings
 urlpatterns = [
     path('',views.Home,name='Hotel-Home'),
     path('ItemView/',views.ItemView,name='Hotel-ItemView'),
-    path('Update/',views.Update,name='Hotel-Update')
+    path('Update/',views.Update,name='Hotel-Update'),
+    path('AddItem',views.AddItem,name='Hotel-AddItem'),
 ]
 
 if settings.DEBUG:

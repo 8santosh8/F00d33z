@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>new item</title>
+</head>
+<body>
+     <form method="POST" action="{% url 'Hotel-AddItem' %}" enctype="multipart/form-data">
+         {% csrf_token %}
+         <input type="text" name="restaurantname" value="{{ rest }}" readonly><br>
+         food name:<input type="text" name="foodname"><br>
+         type:<select name="type">
+             <option value="veg">veg</option>
+             <option value="non-veg">non-veg</option>
+         </select><br>
+         category:<select name="category">
+            <option value="starter">starter</option>
+            <option value="soup">soup</option>
+            <option value="main course">main course</option>
+            <option value="dessert">dessert</option>
+            <option value="beverages">beverages</option>
+         </select><br>
+         price:<input type="number" name="price"><br>
+         avaialability<input type="number" name="availability"><br>
+         image<input type="file" name="foodimage" accept="image/*"><br>
+         <input type="submit" value="create">
+     </form>
+</body>
+</html>

@@ -1,5 +1,4 @@
 {% extends 'Users/Base.html' %}
-{% load crispy_forms_tags %}
 {% load widget_tweaks %}
 {% load staticfiles %}
 
@@ -114,7 +113,7 @@
 
 
     <div class="row" style="background-color:#A9A9A9">
-        <form method="POST" action="">
+        <form method="POST" action="{% url 'Hotel-Update' %}">
          {% csrf_token %}
 	   <div style="padding-left:10%">
 			<h1 class="header-h"><u>Menu List:</u></h1>
