@@ -6,7 +6,7 @@ def Details_Required(function):
             if not hasattr(request.user, 'user_profile'):
                 return redirect('Users-AddDetails')
             else:
-                funtion(request,args,**kwrds)
+                return function(request,*args,**kwrds)
         else:
             return redirect('Users-Login')
     return wrapping_func

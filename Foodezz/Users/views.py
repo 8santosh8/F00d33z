@@ -118,7 +118,7 @@ def Login(request):
         Log_form = C_Login()
     return render(request,'Users/Login.html',{'Login_form':Log_form})
 
-@decorators.Details_Required
+@login_required
 def Profile(request,username):
     if not hasattr(request.user, 'user_profile'):
         return redirect('Users-AddDetails')
