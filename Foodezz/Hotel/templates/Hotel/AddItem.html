@@ -1,10 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+{% extends 'Users/Base.html' %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+{% load staticfiles %}
+
+{% block head %}
+
     <title>new item</title>
-</head>
-<body>
+
+{% endblock head %}
+
+{% block body %}
+<div class="container">
+
      <form method="POST" action="{% url 'Hotel-AddItem' %}" enctype="multipart/form-data">
          {% csrf_token %}
          <input type="text" name="restaurantname" value="{{ rest }}" readonly><br>
@@ -25,5 +32,5 @@
          image<input type="file" name="foodimage" accept="image/*"><br>
          <input type="submit" value="create">
      </form>
-</body>
-</html>
+</div>
+ {% endblock body %}
