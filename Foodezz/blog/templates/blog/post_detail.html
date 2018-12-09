@@ -1,0 +1,48 @@
+{% extends 'blog/base.html' %}
+{% block title %}{{ post.title }} | {{ block.super }}{% endblock %}
+{% block content %}
+{% include 'blog/alerts.html' %}
+
+<h3>{{ post.title }}</h3>
+<small>Post created by: {{ post.author }}</small>
+<hr>
+<p>{{ post.body }}</p>
+<div class="row gallary">
+	{% for p in post.images_set.all %}
+		<div class="col-md-3">
+			<img src="{{ p.image.url }}" alt="Image Not Found" class="img-thumbnail">
+		</div>
+	{% endfor %}
+</div>
+<div id="like-section">
+	{% include 'blog/like_section.html' %}
+</div>
+{% if post.author == request.user %}
+<div class="section-1" style="float: right;">
+	<a href="{% url 'blog:post_edit' id=post.id %}">
+		<button type="button" class="btn btn-outline-success">Edit</button>
+	</a>
+	
+		<button type="button" id="delete" class="btn btn-danger" onclick="post_delete()">
+			Delete
+		</button>
+	
+</div>
+<script type="text/javascript">
+	function post_delete(){
+		if(confirm("Are you sure you want to delete?")){
+			location.href="{% url 'blog:post_delete' id=post.id %}"
+		} else{
+
+		}
+	}
+</script>
+{% endif %}
+<br><br>
+<hr>
+{% if not post.restrict_comment %}
+	<div class="main-comment-section">
+		{% include 'blog/comments.html' %}
+	</div>
+{% endif %}
+{% endblock %}

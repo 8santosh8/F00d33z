@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+{% extends 'Users/Base.html' %}
+{% load widget_tweaks %}
+
+{% load staticfiles %}
+{% block head %}
+
+    <meta charset="utf-8">
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<meta name="keywords" content="footer, contact, form, icons" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+
+  	<link rel="stylesheet" href="css/demo.css">
+  	<link rel="stylesheet" href="css/footer-distributed-with-contact-form.css">
+
+  	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+
+  	<link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+    <title>Welcome to Food3zz</title>
+    <link rel="stylesheet" href="{% static "css/locaterestaurants.css" %}" alt="oh crap">
+    <script src="{% static "JS/ase1.js" %}"></script>
+
+{% endblock head %}
+{% block body %}
+
+{#<div>#}
+{#<ul class="nav">#}
+{#    <li id="settings">#}
+{#        <a href="#"><img src=" {% static "images/123.png" %}" height=100px width=220px/></a>#}
+{#    </li>#}
+{#    <li>#}
+{#        <a href="#">About Us</a>#}
+{#    </li>#}
+{#    <li id="search">#}
+{#        <form action="" method="get">#}
+{#            <input type="text" name="search_text" id="search_text" placeholder="Search"/>#}
+{#            <input type="button" name="search_button" id="search_button"></a>#}
+{#        </form>#}
+{#    </li>#}
+{#    <li id="options">#}
+{#        <a href="#">Hi</a>#}
+{#        <ul class="subnav">#}
+{#            <li><a href="#">My Cart</a></li>#}
+{#            <li><a href="#">Profile</a></li>#}
+{#            <li><a href="#">Logout</a></li>#}
+{#        </ul>#}
+{#    </li>#}
+{#</ul>#}
+
+<script src="prefixfree-1.0.7.js" type="text/javascript"></script>
+
+    <div class="row">
+    {% for restaurant in restaurants %}
+        <div class="col-sm-4">
+            <div class="card" style="width: 18rem;margin-top:100px">
+                <img class="card-img-top" src="{{ restaurant.restimage.url }}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ restaurant.name }}</h5>
+                        <p class="card-text">Address:{{ restaurant.address }}, {{ restaurant.street }}, {{ restaurant.city }},{{ i }}</p>
+                        <a href="{% url 'payments:showrestaurant' restaurant.name %}">Check it out!</a>
+                    </div>
+                </div>
+        </div>
+    {% endfor %}
+    </div>
+
+
+{##}
+{##}
+{#<footer class="footer-distributed">#}
+{##}
+{#  <div class="footer-left">#}
+{##}
+{#    <h3>F00d3zz</h3>#}
+{##}
+{#    <p class="footer-links">#}
+{#      <a href="#">Home</a>#}
+{#      ·#}
+{#      <a href="#">Blog</a>#}
+{#      ·#}
+{#      <a href="#">Pricing</a>#}
+{#      ·#}
+{#      <a href="#">About</a>#}
+{#      ·#}
+{#      <a href="#">Faq</a>#}
+{#      ·#}
+{#      <a href="#">Contact</a>#}
+{#    </p>#}
+{##}
+{#    <p class="footer-company-name">Food3zz &copy; 2018</p>#}
+{##}
+{#    <div class="footer-icons">#}
+{##}
+{#      <a href="#"><i class="fa fa-facebook"></i></a>#}
+{#      <a href="#"><i class="fa fa-twitter"></i></a>#}
+{#      <a href="#"><i class="fa fa-github"></i></a>#}
+{##}
+{#    </div>#}
+{##}
+{#  </div>#}
+{##}
+{#  <div class="footer-right">#}
+{##}
+{#    <p>Contact Us</p>#}
+{##}
+{#    <form action="#" method="post">#}
+{##}
+{#      {% csrf_token %}#}
+{#      {{ form.as_p }}#}
+{##}
+{#      <input type="text" name="email" placeholder="Email" />#}
+{#      <textarea name="message" placeholder="Message"></textarea>#}
+{#      <button type="submit">Send</button>#}
+{##}
+{#    </form>#}
+{##}
+{#  </div>#}
+{##}
+{#</footer>#}
+
+
+</div>
+
+{% endblock body %}

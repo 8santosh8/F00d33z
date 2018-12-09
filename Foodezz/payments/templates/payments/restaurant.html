@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+     <form method="POST" action="{% url 'payments:foodselection' %}">
+         {% csrf_token %}
+         <select name="restaurant">
+             {% for restaurant in restaurantdata %}
+             <option value='{{ restaurant.name }}'>{{ restaurant.name }}</option>
+             {% endfor %}
+         </select>
+         <input type="submit" name='submit' value="submit"><br>
+         <input type="submit" name='submit' value="restaurantupdate"><br>
+         <input type="submit" name="submit" value="my cart"><br>
+         <input type="submit" name="submit" value="makeorderconfirmation"><br>
+         <input type="submit" name="submit" value="showalllocations"><br>
+     </form>
+</body>
+</html>

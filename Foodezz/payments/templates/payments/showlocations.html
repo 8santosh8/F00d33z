@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>locations</title>
+</head>
+<body>
+    <form method="POST" action="{% url 'payments:locaterestaurants' %}">
+         {% csrf_token %}
+        {% for location in locations %}
+            <input type="submit" name="submit" value="{{ location.city }}"><br>
+        {% endfor %}
+    </form>
+</body>
+</html>

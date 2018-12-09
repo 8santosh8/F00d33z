@@ -1,0 +1,14 @@
+{% extends 'Users/Base.html' %}
+
+{% block head %}
+    <title>
+        Logout-Page
+    </title>
+{% endblock head %}
+
+{% block body %}
+    <h1>You have been successfully logged out.</h1>
+    <br>
+    To login again click
+    <a href="{% url 'Users-Login' %}">here</a>
+{% endblock body %}

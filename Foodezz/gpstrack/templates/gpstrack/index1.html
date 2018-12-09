@@ -1,0 +1,49 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Driver</title>
+    <link href="{% static "css/index1.css"%}" rel="stylesheet">
+</head>
+<body>
+<div class="box">
+    <h2>Location</h2>
+<form method="POST" action="{% url 'gpstrack.result' %}">
+    {%  csrf_token %}
+    <div class="inputBox">
+        <input type="text" name="driverid1" required>
+        <label>DriverID</label>
+    </div>
+    <div class="inputBox">
+        <input type="" name ="lat"  id="lat" required step="0.0001">
+        <label>Latitude</label>
+    </div>
+    <div class="inputBox">
+        <input type="number" name ="long" id="long" required step="0.0001">
+        <label>Longitude</label>
+    </div>
+    <input type="submit" value="Submit"><br>
+</form>
+    <button onclick="getLocation()">Need lat and long</button>
+<script>
+var x = document.getElementById("demo");
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function showPosition(position) {
+  var lat = document.getElementById("lat");
+  var long = document.getElementById("long");
+  lat.value = position.coords.latitude.toFixed(4)
+  long.value = position.coords.longitude.toFixed(4)
+}
+</script>
+</div>
+</body>
+</html>
