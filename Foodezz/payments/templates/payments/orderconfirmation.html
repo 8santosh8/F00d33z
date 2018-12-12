@@ -1,0 +1,71 @@
+{% extends 'Users/Base.html' %}
+{% load widget_tweaks %}
+
+{% load staticfiles %}
+{% block head %}
+
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Satisfy|Bree+Serif|Candal|PT+Sans">
+  <link href='https://fonts.googleapis.com/css?family=Andika' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=Eagle Lake' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=Alegreya SC' rel='stylesheet'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="{% static "css/orderconfirmation.css" %}">
+  
+{% endblock head %}
+
+{% block body %}
+
+<body style="background-color:#ffffff">
+{#	<div class="nav" style="height:100px;z-index: 1;background-color: black;position: fixed;top: 0;left:0;width:100%">#}
+{#      <h1 class="logo">Food33z</h1>#}
+{#	  <span style="height:100%;width:100px;margin-top:30px;margin-left:50%;float:left"><a class="logout" style="" href="" target="_blank"><i class="fa fa-home"></i>  Home</a></span>#}
+{#	  <span style="height:100%;width:120px;margin-top:30px;margin-left:2%;float:left"><a class="logout" style="" href="" target="_blank"><i class="fa fa-cart-plus"></i>  My Cart</a></span>#}
+{#	  <span style="height:100%;width:100px;margin-top:30px;margin-left:2%;float:left"><a class="logout" style="" href="hotel_mod.html" target="_blank"><i class="fa fa-bars"></i>  Menu </a></span>#}
+{#      <span style="height:100%;width:120px;margin-top:30px;margin-left:2%;float:left"><a class="logout" style="" href=""><i class="fa fa-power-off"></i>  Log Out </a></span>#}
+{#	</div>#}
+{#	#}
+	<!--<div style="padding-left:5%;margin-top:150px;position:relative;font-family:Andika">
+			<h1 style="">YOUR ORDERS:</h1>
+	</div>-->
+
+    <span style="font-size:50px;margin-left:5%;font-family: Alegreya SC">Your Orders</span>
+
+	<div style="background-color:#F8F9F9;margin-top:150px;">
+	  <div id="heading" style="top:0;width:100%;color:black;">
+        <span style="font-family:Andika;margin-left:4%;font-size:25px"><u>Food Name</u></span>
+        <span style="font-family:Andika;margin-left:5%;font-size:25px"><u>Restaurant Name</u></span>
+		<span style="font-family:Andika;margin-left:5%;font-size:25px"><u>Quantity</u></span>
+		<span style="font-family:Andika;margin-left:5%;font-size:25px"><u>Price(₹)</u></span>
+		<span style="font-family:Andika;margin-left:5%;font-size:25px"><u>Track Your Order</u></span>
+		<span style="font-family:Andika;margin-left:5%;font-size:25px"><u>Confirmation</u></span>
+	  </div>
+	  <div class="food-menu" style="font-family:Andika;margin-bottom:50px;width:85%">
+
+
+          {% for order in orders %}
+              <div style="margin-top:10px;border-radius:10px;margin-left: 4%" class="row">
+                  <input type="text" name="id" class="buy" value="{{ order.foodname }}" style="margin-left:5%;width:200px;font-family: Alegreya SC" readonly>
+                  {% for i in rest%}
+                    {% if i == order.restaurantid %}
+                        <input type="text" name="hotel" class="buy" value="{{ i.name }}" style="margin-left:7%;width:100px;font-family: Alegreya SC" readonly>
+                    {% endif %}
+                  {% endfor %}
+                  <input type="number" name="quantity" class="buy" value="{{ order.quantity }}" style="margin-left:10%;width:100px;font-family: Alegreya SC" readonly>
+                  <input type="number" name="price" class="buy" value="{{ order.price }}" style="margin-left:4%;width:150px;font-family: Alegreya SC" readonly>
+                  {% if order.status == 'OutForDelivery' %}
+                      <a href="{% url 'payments:orderconfirm' 'track' order.orderid %}"><button class="buy" style="margin-left:5%;width:100px;font-family: Alegreya SC">Track</button></a>
+                      <a href="{% url 'payments:orderconfirm' 'order confirm' order.orderid %}"><button class="buy" style="margin-left:9%;font-family: Alegreya SC">Order Received</button></a>
+                  {% endif %}
+                  {% if order.status == 'SentToRestaurant' %}
+                      <button class="buy" style="margin-left:6%;">track not avilable yet</button>
+                      <button class="buy" style="margin-left:8%;">not yet out for delivery</button>
+                  {% endif %}
+              </div>
+          {% endfor %}
+
+	</div>
+    </div>
+		
+
+</body>
+{% endblock body %}

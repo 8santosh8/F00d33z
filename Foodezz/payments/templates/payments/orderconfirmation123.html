@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <title>order confirmation</title>
+</head>
+<body>
+    <script>
+        function track(name) {
+            document.getElementById("orderid").value=name
+        }
+    </script>
+     <form method="POST" action="{% url 'payments:orderconfirm' %}">
+         {% csrf_token %}
+         <table class="table table-striped table-dark">
+             <tr>
+                 <th>Name of food</th>
+                 <th>restaurant name</th>
+                 <th>quantity</th>
+                 <th>Price</th>
+                 <th>Track hyour order</th>
+                 <th>confirmation</th>
+             </tr>
+             {% for order in orders %}
+             <tr>
+                 <td><input type="text" name="{{ order.foodname }}_name" value="{{ order.foodname }}" readonly></td>
+                 {% for i in rest%}
+                    {% if i == order.restaurantid %}
+                        <td><input type="text" name="restname" value="{{ i.name }}" readonly><td>
+                    {% endif %}
+                 {% endfor %}
+                 <td><input type="number" value="{{ order.quantity }}"></td>
+                 <td><input type="number" value="{{ order.price }}"></td>
+                 {% if order.status == 'OutForDelivery' %}
+                    <td><input id="{{ order.orderid }}" type="submit" name="submit" value="track" onclick='track(this.id)'></td>
+                     <td><input id="{{ order.orderid }}" name="submit" type="submit" value="order recieved" onclick='track(this.id)'></td>
+                 {% endif %}
+                 {% if order.status == 'SentToRestaurant' %}
+                    <td><input type="button" value="track not avilable yet"></td>
+                    <td><input type="button" value="not yet out for delivery"></td>
+                 {% endif %}
+             </tr>
+             {% endfor %}
+         </table>
+         <input name='orderid' id="orderid" type="text" value="123" hidden>
+     </form>
+</body>
+</html>

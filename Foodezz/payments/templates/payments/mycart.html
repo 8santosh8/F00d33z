@@ -1,0 +1,168 @@
+{% extends 'Users/Base.html' %}
+{% load widget_tweaks %}
+
+{% load staticfiles %}
+{% block head %}
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="stylesheet" href="{% static 'Materialize/CSS/materialize.css' %}">
+{#        <link rel="stylesheet" href="{% static 'Login/CSS/header.css' %}">#}
+        <link rel="stylesheet" href="{% static 'Login/CSS/Googleicon.css' %}">
+        <link rel="stylesheet" href="{% static "Login/CSS/cart.css" %}">
+
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+{% endblock head %}
+
+{% block body %}
+
+<script>
+        function foodid(food_id) {
+            document.getElementById('food_id').value=food_id
+        }
+     </script>
+
+{#<div class="page-overlay"></div>#}
+
+{#            <ul>#}
+{#                <li><a class="active" href='{% url 'Users-Home' %}'>Home</a></li>#}
+{#                {% if user.is_authenticated %}#}
+{#                    <li style="float:right"><a href={% url 'Users-Logout' %}>Logout</a></li>#}
+{#                    <li style="float:right"><a href={% url 'Users-Profile' %}>Profile</a></li>#}
+{#                {% else %}#}
+{#                    <li style="float:right"><a href={% url 'Users-Login' %}>Login</a></li>#}
+{#                    <li style="float:right"><a href={% url 'Rest-Login' %}>Hotel Login</a></li>#}
+{#                    <li style="float:right"><a href={% url 'Users-Register' %}>Custumer Register</a></li>#}
+{#                {% endif %}#}
+{#            </ul>#}
+
+{#    <ul class="nav">#}
+{#        <li id="settings">#}
+{#            <a href="{% url 'Users-Home' %}"><img src="{% static 'Login/Media/123.png' %}" height=100px width=200px/></a>#}
+{#        </li>#}
+{#        <li>#}
+{#            <a href="#">About Us</a>#}
+{#        </li>#}
+{#        <li id="search">#}
+{#            <form action="" method="get">#}
+{#                <input type="text" name="search_text" id="search_text" placeholder="Search"/>#}
+{#                <input type="button" name="search_button" id="search_button"></a>#}
+{#            </form>#}
+{#        </li>#}
+{#        {% if user.is_authenticated %}#}
+{#            <div class="right">#}
+{#                <li id="options">#}
+{#                    <a href="#">Hi ,{{ user.username }}</a>#}
+{#                    <ul class="subnav">#}
+{#                        <li><a href="#">My Cart</a></li>#}
+{#                        <li><a href="{% url 'Users-Profile' %}">Profile</a></li>#}
+{#                        <li><a href="{% url 'Users-ChangePassword' %}">Change password</a></li>#}
+{#                        <li><a href="{% url 'Users-Logout' %}">Logout</a></li>#}
+{#                    </ul>#}
+{#                </li>#}
+{#            </div>#}
+{#        {% else %}#}
+{#            <div class="right">#}
+{#                <li>#}
+{#                    <a href="{% url 'Users-Login' %}">#}
+{#                        Login#}
+{#                    </a>#}
+{#                </li>#}
+{#                <li>#}
+{#                    <a href="{% url 'Users-Register' %}">#}
+{#                        Register#}
+{#                    </a>#}
+{#                </li>#}
+{#                <li>#}
+{#                    <a href="{% url 'Rest-Login' %}">#}
+{#                        Hotel Login#}
+{#                    </a>#}
+{#                </li>#}
+{#            </div>#}
+{#        {% endif %}#}
+{#    </ul>#}
+
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Item Name</th>
+          <th scope="col">Restaurant Name</th>
+          <th scope="col">Price</th>
+          <th scope="col">Quantity</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+
+
+      <form method="POST" action="{% url 'payments:mycart' %}">
+         {% csrf_token %}
+        Items in buynow<br>
+         <table class="table table-striped table-dark">
+             {% for item in later %}
+            <tr>
+            <td scope="row">1</td>
+            <td>{{ item.foodname}}</td>
+             {% for i in rest%}
+                 {% if i == item.restaurantid %}
+                      <td>{{ i.name }}<td>
+                     {% for j in food %}
+                         {% if j.restaurantid == i and j.foodname == item.foodname %}
+                             <td>{{ j.price }}</td>
+                         {% endif %}
+                     {% endfor %}
+                  {% endif %}
+             {% endfor %}
+            <td>{{ item.price }}</td>
+            <td><input type="number" id="{{ item.pk }}_quantity" name="{{ item.pk }}_quantity" min="1" max="10" value="1"></td>
+            <th scope="col"><input id="{{ item.pk }}" type="submit" class="btn btn-primary" name="button" value="buynow" onclick='foodid(this.id)'></th>
+              <th scope="col"><input id="{{ item.pk }}" type="submit" class="btn btn-success" name="button" value="remove from cart" onclick='foodid(this.id)'></th>
+            </tr>
+            {% endfor %}
+        </table>
+        <input id="food_id" name="food_id" type="text" hidden>
+        </form>
+
+      </tbody>
+    </table>
+
+
+
+
+{#    <footer class="footer-distributed">#}
+{#        <div class="footer-left">#}
+{#              <h3>F00d3zz</h3>#}
+{#              <p class="footer-links">#}
+{#                  <a href="{% url 'Users-Home' %}">Home</a>#}
+{#                  ·#}
+{#                  <a href="#">Blog</a>#}
+{#                  ·#}
+{#                  <a href="#">About</a>#}
+{#                  ·#}
+{#                  <a href="#">Contact</a>#}
+{#              </p>#}
+{##}
+{#        <p class="footer-company-name">Food3zz &copy; 2018</p>#}
+{##}
+{#            <div class="footer-icons">#}
+{##}
+{#            <a href="#"><i class="fa fa-facebook"></i></a>#}
+{#            <a href="#"><i class="fa fa-twitter"></i></a>#}
+{#            <a href="#"><i class="fa fa-github"></i></a>#}
+{##}
+{#            </div>#}
+{##}
+{#        </div>#}
+{##}
+{#    </footer>#}
+
+  <script type="text/javascript"  src="{% static 'Materialize/JS/materialize.js' %}"></script>
+{% endblock body %}
