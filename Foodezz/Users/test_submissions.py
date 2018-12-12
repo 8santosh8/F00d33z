@@ -107,3 +107,14 @@ class ChangePasswordTest(TestCase):
 
         # self.assertRedirects(response,expected_url='/Login/')
         self.assertEqual(response.status_code,200)
+
+    def test_PasswordDidntMatch(self):
+        self.client = Client()
+        self.client.force_login(self.RegisteredUser)
+        response = self.client.post(self.request_url,
+                                    {'Current_password':'HelloWorld',
+                                    'new_Password':'newPaaa',
+                                    'Re_Password':'newPassword'})
+
+        # self.assertRedirects(response,expected_url='/ChangePassword/')
+        self.assertEqual(response.status_code,200)
