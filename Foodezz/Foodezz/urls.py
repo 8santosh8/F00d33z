@@ -23,5 +23,5 @@ urlpatterns = [
     path('Hotel/',include('Hotel.urls')),
     path('payments/', include('payments.urls')),
     path('gpstrack/',include('gpstrack.urls')),
-    #path('Paypal/', include('Paypal.urls')),
+    path('Paypal/', include('Paypal.urls')),
 ]
