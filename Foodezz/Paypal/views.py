@@ -2,13 +2,13 @@ from django.shortcuts import render_to_response
 from paypal.standard.forms import PayPalPaymentsForm
 from django.views.decorators.csrf import csrf_exempt
 
-def payment_button(request):
+def payment_button(request, foodname, quantity, price, orderid):
 
     paypal_dict = {
         "business": "aaquibniaz3600@gmail.com",
-        "amount": "100",
-        "item_name": "GG NOOBS",
-        "invoice": "unique-invoice-00001",
+        "amount": price,
+        "item_name": foodname,
+        "invoice": orderid,
         "notify_url": '127.0.0.1:8000/paypal/',
         "return": '127.0.0.1:8000/paypal-return/',
         "cancel_return": '127.0.0.1:8000/paypal-cancel/',

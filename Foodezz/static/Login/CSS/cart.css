@@ -44,7 +44,7 @@
     width: 357px;
     margin: 4px;
 }
-#myInput{
+#search_text{
     width: 297px;
     padding: 15px 0 15px 20px;
     font-size: 16px;
@@ -117,87 +117,6 @@
     top: 100%;
     opacity: 1;
 }
-
-
-.location{
-  background-color: rgb(3, 95, 60);
-  height:90px;
-  margin-bottom:-80px;
-}
-
-.locations{
-    text-decoration: none;
-    color: yellow;
-    font-size: 30px;
-    padding: 20px 30px;
-
-}
-
-
-@-webkit-keyframes fade {
-    0%{
-      opacity: 1;
-   }
-   8% {
-      opacity:1;
-   }
-   13%{
-      opacity: 0;
-   }
-   95% {
-      opacity:0;
-   }
-   100% {
-      opacity:1;
-   }
-}
-
-.img {
-    position:absolute;
-    width: 100%
-}
-
-.img:nth-child(1) {
-    -webkit-animation: fade 24s 0s infinite;
-    z-index:80;
-}
-
-.img:nth-child(2) {
-    -webkit-animation: fade 24s 3s infinite;
-    z-index:70;
-}
-
-.img:nth-child(3) {
-    -webkit-animation: fade 24s 6s infinite;
-    z-index:60;
-}
-
-.img:nth-child(4) {
-    -webkit-animation: fade 24s 9s infinite;
-    z-index:50;
-}
-
-.img:nth-child(5) {
-    -webkit-animation: fade 24s 12s infinite;
-    z-index:40;
-}
-
-.img:nth-child(6) {
-    -webkit-animation: fade 24s 15s infinite;
-    z-index:30;
-}
-
-.img:nth-child(7) {
-    -webkit-animation: fade 24s 18s infinite;
-    z-index:20;
-}
-
-
-.img:nth-child(8) {
-    -webkit-animation: fade 24s 21s infinite;
-    z-index:10;
-}
-
 
 
 
@@ -320,8 +239,14 @@
 
 
 
+.table
+{
+  margin-top: 100px;
+  
 
 
+
+}
 
 
 

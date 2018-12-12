@@ -42,8 +42,12 @@
                     <a href="#">About Us</a>
                 </li>
                 <li id="search">
-                    <form autocomplete="off" action="/action_page.php" method="get">
-                        <input id="myInput" type="text" name="search_text" placeholder="Search">
+                    <form autocomplete="off" action="{% url "payments:search" %}" method="post">
+                        {% csrf_token %}
+{#                        <div class="autocomplete" style="width:300px;">#}
+                        <input id="myInput" type="text" name="myCountry" placeholder="Search">
+{#                        </div>#}
+                        <input type="submit" name="search_button" id="search_button">
                     </form>
                 </li>
                 {% if user.is_authenticated %}
@@ -53,6 +57,7 @@
                             <ul class="subnav">
                                 <li><a href="{% url "payments:makecart" %}">My Cart</a></li>
                                 <li><a href="{% url "payments:makeorderconfirm" %}">Order confirmation</a></li>
+                                <li><a href="{% url "payments:makeprev" %}">Previous bookings</a></li>
                                 <li><a href="{% url 'Users-Profile' %}">Profile</a></li>
                                 <li><a href="{% url 'Users-ChangePassword' %}">Change password</a></li>
                                 <li><a href="{% url 'Users-Logout' %}">Logout</a></li>
@@ -118,12 +123,12 @@
                         </div>
                     </div>
                 </div>
-
+            </div>
 
             {% block body %}
 
             {% endblock body %}
-          </div>
+
 
 
           <footer class="footer-distributed">
@@ -255,7 +260,7 @@ function autocomplete(inp, arr) {
 }
 
 /*An array containing all the country names in the world:*/
-var countries = ["Tada","Swathi","Kitchen","Sunny"];
+var countries = ["tada","swathi","kitchen","sunny"];
 
 /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
 autocomplete(document.getElementById("myInput"), countries);
