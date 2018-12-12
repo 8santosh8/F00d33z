@@ -3,10 +3,11 @@
 
 {% load staticfiles %}
 {% block head %}
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Satisfy|Bree+Serif|Candal|PT+Sans">
   <link href='https://fonts.googleapis.com/css?family=Amarante' rel='stylesheet'>
   <link href='https://fonts.googleapis.com/css?family=Allura' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=Alegreya SC' rel='stylesheet'>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="{%static  "css/foodselection.css"%}">
   <title>Hotel Details</title>
@@ -14,7 +15,7 @@
 {% endblock head %}
 
 {% block body %}
-<body>
+
 <script>
         function foodname(food_name) {
             document.getElementById('food_name').value=food_name
@@ -32,10 +33,9 @@
 {#	  <span style="height:100%;width:120px;margin-top:30px;margin-left:2%;float:left"><a class="logout" style="margin-left:5%;width:200px;margin-top:60px;" href="#contact"><i class="fa fa-phone"></i>  Contact </a></span>#}
 {#      <span style="height:100%;width:120px;margin-top:30px;margin-left:2%;float:left"><a class="logout" style="" href=""><i class="fa fa-power-off"></i>  Log Out </a></span>#}
 {#	</div>#}
-  <section id="banner" style="background: url({%static "images/banner-bg.jpg"%}) no-repeat center top;">
-    <div class="bg-color">
-		  <header style="border:0.5px solid #C71585; height:1px;">
-			</header>
+  <section id="banner" style="background: url({%static "images/banner-bg.jpg"%}) no-repeat center top;background-size:cover">
+    <div class="bg-color" style="border:1px solid black">
+
 
           <div style="text-align:center;">
             <h1 class="logo-name">{{ rest }}</h1>
@@ -50,10 +50,10 @@
 
   <!-- menu -->
   <section id="menu-list" class="">
-    <div class="row">
+    <div>
 	   <div class="food-menu" style="float:left;">
         <div>
-          <h1 class="header-h">Menu List</h1>
+          <h1 class="header-h" style="font-family:Alegreya SC">Menu List</h1>
         </div>
 
         <div id="menu-flters" style="margin-left: 10%">
@@ -67,13 +67,13 @@
           </ul>
         </div>
 
-          <div style="float:left;font-family:Amarante;width:100%;margin-bottom:60px;margin-left: 2%">
+          <div style="float:left;font-family:Alegreya SC;width:100%;margin-bottom:60px;margin-left: 2%">
               <span  style="font-size:35px;margin-left:8%">Item Name</span>
 			  <span  style="font-size:35px;margin-left:17%">Price</span>
-              <span  style="font-size:35px;margin-left:10%">Quantity</span>
+              <span  style="font-size:35px;margin-left:9%">Quantity</span>
           </div>
 
-    <form method="POST" action="{% url 'payments:pay' %}">
+    <form method="POST" action="{% url 'payments:pay' rest %}">
         {% csrf_token %}
         {% for fooddata in food %}
             <div class="{{ fooddata.category }} menu-restaurant" style="float:left;width:45%;height:132px;margin-left: 4%">
@@ -86,8 +86,8 @@
           </div>
 		  <div class="{{ fooddata.category }} menu-restaurant" style="width:35%;margin-right:12%;height:132px;">
 				<input type="number" name="quantity" id="{{ fooddata.foodname }}_quantity" value="1" min="1" max="10" style="text-align:center;margin-left: 7%;border-radius:5px;border:1px solid green;width:100px;height: 30px">
-                <input type="submit" class="btns" id="{{ fooddata.foodname }}" name="button" value="add to cart" onclick="foodname(this.id)" style="font-size: 25px;border-radius: 10px;border:2px solid #FFB03B">
-                <input type="submit" class="btns" id="{{ fooddata.foodname }}" name="button" value="buynow" onclick="foodname(this.id)" style="font-size: 25px;border-radius: 10px;margin-right: 20px;border:2px solid #FFB03B">
+                <input type="submit" class="btns" id="{{ fooddata.foodname }}" name="button" value="add to cart" onclick="foodname(this.id)" style="font-size: 25px;border-radius: 10px;border:2px solid #FFB03B;font-family:Alegreya SC">
+                <input type="submit" class="btns" id="{{ fooddata.foodname }}" name="button" value="buynow" onclick="foodname(this.id)" style="font-size: 25px;border-radius: 10px;margin-right: 20px;border:2px solid #FFB03B;font-family:Alegreya SC">
 		  </div>
         {% endfor %}
     <input id="food_name" name="food" type="text" hidden>
@@ -120,5 +120,4 @@
   <script src="https://code.jquery.com/jquery-2.1.1.js"></script>
 
   <script src="{% static "js/hotels.js"%}"></script>
-    </body>
 {% endblock body %}

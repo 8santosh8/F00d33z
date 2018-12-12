@@ -45,7 +45,6 @@
 .header-h {
     color: #FFB03B;
     font-size: 46px;
-    font-family: 'Satisfy', sans-serif;
     font-weight: 300;
 }
 
@@ -164,23 +163,7 @@ img{
 	border:0px;
 }
 
-.submit{
-	border-radius:5px;
-	margin-left:40%;
-	font-size:30px;
-	font-family:Amarante;
-	text-decoration:none;
-	border:2px solid #FFB03B;
-}
 
-.submit:hover{
-	background: #FFB03B;
-    color: #fff;
-    border: 1px solid #FFB03B;
-}
 
-.row{
-	margin-right:-15px;margin-left:-15px;
-}
-.row:after{clear:both}
-.row:after,.row:before{display:table;content:" "}
+
+

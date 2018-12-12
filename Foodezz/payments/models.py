@@ -53,3 +53,7 @@ class CustomerCart(models.Model):
     restaurantid = models.ForeignKey(RestaurantLog, on_delete=models.PROTECT)
     foodname=models.CharField(max_length=150)
     status=models.CharField(max_length=50,default='buylater')
+
+class Feedback(models.Model):
+    rate=models.IntegerField()
+    suggestion=models.CharField(max_length=200)
