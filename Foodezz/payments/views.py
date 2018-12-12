@@ -13,8 +13,6 @@ from django.conf import settings
 from django.template.loader import render_to_string
 
 
-# Create your views here.
-
 def search(request):
     var=request.POST['myCountry']
     place=RestaurantLog.objects.values_list('city').distinct()
