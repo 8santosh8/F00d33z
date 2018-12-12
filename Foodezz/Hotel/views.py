@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from . import decorators
-from .models import RestaurantItems,RestaurantLog, Orders
+from .models import RestaurantItems,RestaurantLog
+from payments.models import Orders
 from django.shortcuts import redirect
 from django.contrib import messages
 

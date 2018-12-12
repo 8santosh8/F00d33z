@@ -44,6 +44,9 @@ INSTALLED_APPS = [
     'materialize',
     'widget_tweaks',
     'blog',
+    'payments',
+    'gpstrack',
+    'paypal.standard.ipn',
 ]
 
 MIDDLEWARE = [
