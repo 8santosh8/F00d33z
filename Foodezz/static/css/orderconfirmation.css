@@ -1,3 +1,9 @@
+html,body{
+	max-width: 100%;
+	overflow-x: hidden;
+}
+
+
 #heading {
 	background-color: #F8F9F9;
 	opacity:1;

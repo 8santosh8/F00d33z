@@ -8,8 +8,8 @@
 		{% else %}
 			<input type="submit" value="Submit" class="btn btn-outline-success" disabled>
 		{% endif %}
-		</form>	
-	</div>	
+		</form>
+	</div>
 </div>
 {{ comments.count }}
 {% if comments.count > 1 %}
@@ -22,7 +22,7 @@
 <blockquote class="blockquote">
   <p class="mb-0"><small>{{ comment.content }}</small></p>
   <footer class="blockquote-footer">
-  	<small>	
+  	<small>
 	  	By <cite title="Source Title">{{ comment.user|capfirst }}</cite>
   	</small>
   	<button type="button" name="button" class="reply-btn btn btn-outline-dark btn-sm ml-2">Reply</button>
@@ -46,7 +46,7 @@
 	{% else %}
 		<input type="submit" value="Submit" class="btn btn-outline-success" disabled>
 	{% endif %}
-</form>			
+</form>
 </div>
 </div>
 {% endfor %}

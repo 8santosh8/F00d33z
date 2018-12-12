@@ -149,13 +149,11 @@
 	padding-left:10%;
 }
 
-img{
-	float: right;
-	border:2px solid;
-	width:600px;
-	margin-right:0%;
-	height:105px;
+html,body{
+  max-width: 100%;
+  overflow-x: hidden;
 }
+
 
 .icons{
 	width:50px;

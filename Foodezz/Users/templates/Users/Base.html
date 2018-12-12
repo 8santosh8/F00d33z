@@ -39,12 +39,12 @@
                     <a href="{% url 'Users-Home' %}"><img src="{% static 'Login/Media/123.png' %}" height=100px width=200px/></a>
                 </li>
                 <li>
-                    <a href="#">About Us</a>
+                    <a href="/">Home</a>
                 </li>
                 <li id="search">
                     <form autocomplete="off" action="{% url "payments:search" %}" method="post">
                         {% csrf_token %}
-{#                        <div class="autocomplete" style="width:300px;">#}
+{#                        <div class= style="width:300px;">#}
                         <input id="myInput" type="text" name="myCountry" placeholder="Search">
 {#                        </div>#}
                         <input type="submit" name="search_button" id="search_button">
@@ -141,7 +141,7 @@
                         ·
                         <a href="#">About</a>
                         ·
-                        <a href="#">Contact</a>
+                        <a href="#"> Contact No. (+91 7777777777)</a>
                     </p>
 
               <p class="footer-company-name">Food3zz &copy; 2018</p>
