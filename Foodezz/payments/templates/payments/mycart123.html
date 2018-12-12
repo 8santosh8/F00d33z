@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <title>my cart</title>
+</head>
+<body>
+     <script>
+        function foodid(food_id) {
+            document.getElementById('food_id').value=food_id
+        }
+     </script>
+     <form method="POST" action="{% url 'payments:mycart' %}">
+         {% csrf_token %}
+     Items in buynow<br>
+     <table class="table table-striped table-dark">
+         {% for item in later %}
+         <tr>
+             <td><input type="text" name='food' value='{{ item.foodname }}' readonly></td>
+            {% for i in rest%}
+                {% if i == item.restaurantid %}
+                     <td><input type="text" name="restname" value="{{ i.name }}"><td>
+                 {% endif %}
+            {% endfor %}
+             <td><input id="{{ item.pk }}" type="submit" name="button" value="remove from cart" onclick='foodid(this.id)'></td>
+         </tr>
+         {% endfor %}
+     </table>
+     <br>
+     <input id="food_id" name="food_id" type="text" hidden>
+     </form>
+
+</body>
+</html>

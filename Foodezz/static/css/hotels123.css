@@ -1,0 +1,220 @@
+body {
+	font-size: 15px;
+    line-height: 1.52;
+    color: #717f86;
+    font-size: 16px;
+	font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+}
+ol, ul {
+	list-style: none;
+}
+
+.logo{
+    font-family: 'Satisfy', sans-serif;
+    font-size: 35px;
+    color: #CD853F;
+	margin-left:5%;
+	float:left;
+}
+
+.nav a:hover{
+	color:white;
+}
+
+.logout{
+	font-size:24px;
+	background-color:transparent;
+	border:0px;
+	color:#CD853F;
+	pointer:cursor;
+	text-decoration:none;
+}
+
+#banner{
+    background-size: cover;
+    min-height: 400px;
+	min-width:100%;
+}
+
+.bg-color{
+    background-color: RGBA(0, 0, 0, 0.5);
+    min-height: 400px;
+}
+#banner h2{
+    font-family: Allura;
+    font-size: 40px;
+    color: #FFB03B;
+}
+#banner p{
+    font-family: 'PT Sans', sans-serif;
+    color: #fcfcfc;
+    font-size: 34px;
+}
+.section-padding{
+	position:relative;
+	padding-left:20%;
+    padding: 60px 0px;
+
+}
+
+
+.logo-name{
+    font-family: Allura;
+    font-size: 85px;
+    margin-top: 140px;
+    color: #FFB03B;
+}
+
+
+.menu-icon {
+    color: #fff;
+    font-size: 30px;
+    margin-top: 30px;
+    cursor: pointer;
+	margin-left:95%;
+}
+
+.header-h {
+    color: #FFB03B;
+    font-size: 46px;
+    font-family: 'Satisfy', sans-serif;
+    font-weight: 300;
+}
+
+
+.btn {
+	float:right;
+	padding-right:20%;
+	padding-top:15px;
+
+}
+
+.btns {
+	background:transparent;
+	font-family: Amarante;
+    letter-spacing: 1px;
+	border-radius:50px;
+}
+
+
+.menu-restaurant{
+    width: 50%;
+    float: left;
+    padding: 15px;
+    position: relative;
+}
+
+.index{
+    width: 50%;
+    float: left;
+    padding: 15px;
+    position: relative;
+}
+
+.menu-restaurant .btns{
+    float: right;
+    position: relative;
+}
+
+.menu-restaurant .menu-title {
+    float: left;
+    font-family: Amarante;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.menu-restaurant .menu-line {
+    position: absolute;
+    bottom: 6px;
+    border-bottom: 1px dotted rgba(0,0,0,.3);
+    margin-left: .6rem;
+    margin-right: .6rem;
+}
+.menu-restaurant .menu-price {
+    font-weight: 600;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.menu-restaurant {
+    display: block;
+    float: left;
+    color: #B1B1B1;
+    font-family: Satisfy,'Open Sans',arial;
+    font-size: 1.2rem;
+	width:500px;
+}
+
+
+.menu-restaurant span.clearfix {
+    position: relative;
+    display: block;
+	width:400px;
+}
+
+#menu-flters {
+	padding-left:17%;
+}
+
+#menu-flters ul li a.active,#menu-flters ul li a:hover,.btns:hover {
+    background: #FFB03B;
+    color: #fff;
+    border: 1px solid #FFB03B;
+}
+#menu-flters ul li {
+    display: inline-block;
+    color: #fff;
+    letter-spacing: 1px;
+    margin-bottom: 40px;
+}
+#menu-flters ul li a {
+    padding: 10px 20px;
+    font-size: 14px;
+    color: #565656;
+    border-radius: 50px;
+    border: 1px solid #BBBBBB;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.food-menu{
+	padding-left:10%;
+}
+
+img{
+	float: right;
+	border:2px solid;
+	width:600px;
+	margin-right:0%;
+	height:105px;
+}
+
+.icons{
+	width:50px;
+	height:50px;
+	margin-left:20px;
+	border:0px;
+}
+
+.submit{
+	border-radius:5px;
+	margin-left:40%;
+	font-size:30px;
+	font-family:Amarante;
+	text-decoration:none;
+	border:2px solid #FFB03B;
+}
+
+.submit:hover{
+	background: #FFB03B;
+    color: #fff;
+    border: 1px solid #FFB03B;
+}
+
+.row{
+	margin-right:-15px;margin-left:-15px;
+}
+.row:after{clear:both}
+.row:after,.row:before{display:table;content:" "}

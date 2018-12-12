@@ -151,7 +151,7 @@ def RestLogin(request):
         if user and user.user_profile.rest == True:
             if user.is_active:
                 login(request, user)
-                return redirect('Hotel-Home')
+                return redirect('Hotel-ItemView')
             else:
                 messages.error(request, f'Account not in active state')
                 return redirect('Users-Login')

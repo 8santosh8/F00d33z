@@ -1,0 +1,123 @@
+{% extends 'Users/Base.html' %}
+{% load widget_tweaks %}
+
+{% load staticfiles %}
+{% block head %}
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Satisfy|Bree+Serif|Candal|PT+Sans">
+  <link href='https://fonts.googleapis.com/css?family=Amarante' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=Allura' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=Alegreya SC' rel='stylesheet'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="{%static  "css/foodselection.css"%}">
+  <title>Hotel Details</title>
+
+{% endblock head %}
+
+{% block body %}
+
+<script>
+        function foodname(food_name) {
+            document.getElementById('food_name').value=food_name
+            food=food_name.concat("_quantity")
+            document.getElementById('quantity').value=document.getElementById(food).value
+        }
+</script>
+{##}
+{#  <!--banner-->#}
+{#  <div class="nav" style="height:100px;z-index: 1;background-color: black;position: fixed;top: 0;left:0;width:100%">#}
+{#      <h1 class="logo">Food33z</h1>#}
+{#	  <span style="height:100%;width:100px;margin-top:30px;margin-left:40%;float:left"><a class="logout" style="" href="" target="_blank"><i class="fa fa-home"></i>  Home</a></span>#}
+{#	  <span style="height:100%;width:120px;margin-top:30px;margin-left:2%;float:left"><a class="logout" style="" href="" target="_blank"><i class="fa fa-cart-plus"></i>  My Cart</a></span>#}
+{#	  <span style="height:100%;width:100px;margin-top:30px;margin-left:2%;float:left"><a class="logout" style="" href="#menu-list"><i class="fa fa-bars"></i>  Menu </a></span>#}
+{#	  <span style="height:100%;width:120px;margin-top:30px;margin-left:2%;float:left"><a class="logout" style="margin-left:5%;width:200px;margin-top:60px;" href="#contact"><i class="fa fa-phone"></i>  Contact </a></span>#}
+{#      <span style="height:100%;width:120px;margin-top:30px;margin-left:2%;float:left"><a class="logout" style="" href=""><i class="fa fa-power-off"></i>  Log Out </a></span>#}
+{#	</div>#}
+  <section id="banner" style="background: url({%static "images/banner-bg.jpg"%}) no-repeat center top;background-size:cover">
+    <div class="bg-color" style="border:1px solid black">
+
+
+          <div style="text-align:center;">
+            <h1 class="logo-name">{{ rest }}</h1>
+            <h2>Food To fit your lifestyle & health.</h2>
+            <p>Specialized in both North & South Indian Meals!!</p>
+          </div>
+
+
+    </div>
+  </section>
+  <!-- / banner -->
+
+  <!-- menu -->
+  <section id="menu-list" class="">
+    <div>
+	   <div class="food-menu" style="float:left;">
+        <div>
+          <h1 class="header-h" style="font-family:Alegreya SC">Menu List</h1>
+        </div>
+
+        <div id="menu-flters" style="margin-left: 10%">
+          <ul>
+            <li><a class="filter active"  data-filter=".menu-restaurant">Show All</a></li>
+			<li><a class="filter"  data-filter=".soup">Soup</a></li>
+			<li><a class="filter"  data-filter=".starter">Starter</a></li>
+			<li><a class="filter"  data-filter=".main_course">Main Course</a></li>
+			<li><a class="filter"  data-filter=".dessert">Desserts</a></li>
+            <li><a class="filter"  data-filter=".beverage">Beverages</a></li>
+          </ul>
+        </div>
+
+          <div style="float:left;font-family:Alegreya SC;width:100%;margin-bottom:60px;margin-left: 2%">
+              <span  style="font-size:35px;margin-left:8%">Item Name</span>
+			  <span  style="font-size:35px;margin-left:17%">Price</span>
+              <span  style="font-size:35px;margin-left:9%">Quantity</span>
+          </div>
+
+    <form method="POST" action="{% url 'payments:pay' rest %}">
+        {% csrf_token %}
+        {% for fooddata in food %}
+            <div class="{{ fooddata.category }} menu-restaurant" style="float:left;width:45%;height:132px;margin-left: 4%">
+            <span class="clearfix" style="width:600px">
+              <span style="left: 166px; right: 44px;" class="menu-line"></span>
+              <span class="menu-price" style="color:#000">₹{{ fooddata.price }}</span>
+            </span>
+            <img src="{{ fooddata.foodimage.url }}" alt="image not available" style="width:100px;height:100px;border-radius:50%;border:2px solid" class="menu-title">
+            <span class="menu-title" style="color:#000000">{{ fooddata.foodname }}</span>
+          </div>
+		  <div class="{{ fooddata.category }} menu-restaurant" style="width:35%;margin-right:12%;height:132px;">
+				<input type="number" name="quantity" id="{{ fooddata.foodname }}_quantity" value="1" min="1" max="10" style="text-align:center;margin-left: 7%;border-radius:5px;border:1px solid green;width:100px;height: 30px">
+                <input type="submit" class="btns" id="{{ fooddata.foodname }}" name="button" value="add to cart" onclick="foodname(this.id)" style="font-size: 25px;border-radius: 10px;border:2px solid #FFB03B;font-family:Alegreya SC">
+                <input type="submit" class="btns" id="{{ fooddata.foodname }}" name="button" value="buynow" onclick="foodname(this.id)" style="font-size: 25px;border-radius: 10px;margin-right: 20px;border:2px solid #FFB03B;font-family:Alegreya SC">
+		  </div>
+        {% endfor %}
+    <input id="food_name" name="food" type="text" hidden>
+    <input id="quantity" name="quantity" type="number" value="1" hidden>
+    </form>
+
+
+		  
+		  
+	  </div>
+    </div>
+  </section>
+{#  <section class="section-padding" id="contact" style="height:200px;width:100%;background-color:black;position:relative;bottom:0;left:0">#}
+{#		<div class="row">#}
+{#			<div style="padding-left:35%;width:300px;">#}
+{#				<h1>Swathi</h1>#}
+{#				<address>Tada,Chittoor<br>Andhra Pradesh<br>#}
+{#				Contact No:64687456748<br>#}
+{#				Email:tsfsugya@hjg#}
+{#				</address><br>#}
+{#			</div>#}
+{#			<div style="margin-right:5%;">#}
+{#				<a href="https://www.google.co.in/search?ei=Uyn8W6WbOsvXvgT7o7WwCw&q=swathi+hotel+tada&oq=swathi+ho+tada&gs_l=psy-ab.3.0.0i7i30.18836.22040..24864...0.0..1.411.2517.0j6j4j1j1......0....1..gws-wiz.......0j0i71j0i13j0i7i10i30j0i30j0i5i30.wTAPD12vj_w" target="_blank" style="text-decoration:none;"><img src="google.png" alternate="google" class="icons" ></a>#}
+{#				<a href="" target="_blank" style="text-decoration:none;"><img src="instagram.png" alternate="instagram" class="icons" ></a>#}
+{#				<a href="" target="_blank" style="text-decoration:none;"><img src="facebook-icon.png" alternate="facebook" class="icons" ></a>				#}
+{#			</div>#}
+{#		</div>#}
+{#  </section>#}
+
+  <script src="https://code.jquery.com/jquery-2.1.1.js"></script>
+
+  <script src="{% static "js/hotels.js"%}"></script>
+{% endblock body %}

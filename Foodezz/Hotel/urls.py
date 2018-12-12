@@ -4,10 +4,10 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
-    path('',views.Home,name='Hotel-Home'),
-    path('ItemView/',views.ItemView,name='Hotel-ItemView'),
+    path('',views.ItemView,name='Hotel-ItemView'),
     path('Update/',views.Update,name='Hotel-Update'),
-    path('AddItem',views.AddItem,name='Hotel-AddItem'),
+    path('AddItem/',views.AddItem,name='Hotel-AddItem'),
+    path('AssignDelivery/',views.AssignDelivery,name='Hotel-AssignDelivery')
 ]
 
 if settings.DEBUG:

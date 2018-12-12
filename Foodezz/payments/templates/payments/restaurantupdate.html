@@ -9,7 +9,6 @@
   <link href='https://fonts.googleapis.com/css?family=Allura' rel='stylesheet'>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="{% static "css/restupdate.css" %}">
-  <link rel="stylesheet" href="{% static "Login/CSS/karthik_header.css" %}">
 </head>
 
 <body>
@@ -26,91 +25,22 @@
     </script>
 
   <!--banner-->
-  <ul class="nav">
-      <li id="settings">
-          <a href="{% url 'Hotel-ItemView' %}"><img src="{% static 'Login/Media/123.png' %}" height=100px width=200px/></a>
-      </li>
-      {% if user.is_authenticated %}
-          <div class="right">
-              <li id="options">
-                  <a href="#">Hi ,{{ user.username }}</a>
-                  <ul class="subnav">
-                      <li><a href="{% url 'Users-Profile' user.username %}">Profile</a></li>
-                      <li><a href="{% url 'Users-ChangePassword' %}">Change password</li>
-                      <li><a href="{% url 'Users-Logout' %}">Logout</a></li>
-                  </ul>
-              </li>
-          </div>
-      {% else %}
-          <div class="right">
-              <li>
-                  <a href="{% url 'Users-Login' %}">
-                      Login
-                  </a>
-              </li>
-              <li>
-                  <a href="{% url 'Users-Register' %}">
-                      Register
-                  </a>
-              </li>
-              <li>
-                  <a href="{% url 'Rest-Login' %}">
-                      Hotel Login
-                  </a>
-              </li>
-          </div>
-      {% endif %}
-  </ul>
-
-
-
-  <div style="padding:70px;margin-top:30px;">
-      <div class='container'>
-          <div class='row'>
-              <div class='col s4 offset-s4'>
-                  {% if messages %}
-                      {% for message in messages %}
-                          {% if message.tags == 'info' %}
-                              <div class='card blue lighten-1'>
-                                  <div class='center'>
-                                      {{ message }}
-                                  </div>
-                              </div>
-                          {% elif message.tags == 'success' %}
-                              <div class='card green lighten-1'>
-                                  <div class='center'>
-                                      {{ message }}
-                                  </div>
-                              </div>
-                          {% elif message.tags == 'error' %}
-                              <div class='card red lighten-1'>
-                                  <div class='center'>
-                                      {{ message }}
-                                  </div>
-                              </div>
-                          {% else %}
-                              <div class='card gray lighten-1'>
-                                  <div class='center'>
-                                      {{ message }}
-                                  </div>
-                              </div>
-                          {% endif %}
-                      {% endfor %}
-                  {% endif %}
-              </div>
-          </div>
-      </div>
-
+  
+  <div class="banner" style="width:100%;position:absolute;top: 0;left:0;z-index:1" id="nav">
+		<h1 class="logo-name">Food33z</h1>
+		<span style="height:100%;width:120px;margin-top:30px;margin-left:78%;float:left;"><a class="logout" style="margin-left:0px;font-size:20px" href=""><i class="fa fa-power-off"></i>  Log Out </a></span>
+  </div>
+  
   <!-- / banner -->
-
-	<div class="row" style="margin-top:120px;background-color:#ffffff;margin-bottom:50px;">
+			
+	<div class="row" style="margin-top:120px;background-color:#ffffff;margin-bottom:50px;">   
 	   <div style="padding-left:10%;">
 			<h1 class="header-h"><u>Orders:</u></h1>
 	   </div>
-
+	   
 		<div class="food-menu" style="background-color:#A9A9A9">
 
-         <form method="POST" action="{% url 'Hotel-AssignDelivery' %}">
+         <form method="POST" action="{% url 'payments:restorder' %}">
          {% csrf_token %}
              {% for order in orders %}
 
@@ -184,17 +114,17 @@
          </div>
 
     </div>
-
-
-
-
+  
+  
+  
+  
     <div class="row" style="background-color:#A9A9A9">
-        <form method="POST" action="{% url 'Hotel-Update' %}">
+        <form method="POST" action="{% url 'payments:restupdate' %}">
          {% csrf_token %}
 	   <div style="padding-left:10%">
 			<h1 class="header-h"><u>Menu List:</u></h1>
 	   </div>
-
+	  		
 		<div id="heading" style="position:sticky;top:0;color:black;">
             <span style="font-family:Andika;margin-left:2%;font-size:30px">Food Items</span>
 			<span style="font-family:Andika;margin-left:11%;font-size:30px">Type</span>
@@ -215,7 +145,7 @@
 		        </div>
 
             {% endfor %}
-
+		  
 		</div>
 
        <input id="foodname" name='foodname' type="text" hidden>
@@ -227,12 +157,12 @@
        </form>
 
   </div><br><br>
-
-
+  
+  
   <!----add new--->
-
-
-  <!-- <section id="section-padding" style="margin-left:0px;visibility:hidden;margin-bottom:40px;background-color:#ffffff;width:100%;">
+  
+  
+  <section id="section-padding" style="margin-left:0px;visibility:hidden;margin-bottom:40px;background-color:#ffffff;width:100%;">
 	<div class="row" style="margin-left:10%;">
 		<div class="add" style="position:sticky;top:0;color:black;">
             <span style="font-family:Andika;margin-left:1%;font-size:20px"><u>Food Item</u></span>
@@ -249,60 +179,30 @@
 			<button class="add" id="add" style="background:transparent;border-radius:5px;border:1px solid">Add Item</button>
         </div>
 	</div>
-  </section> -->
-
+  </section>
+  
   <!--/add new--->
-
-
-  <footer class="footer-distributed">
-      <div class="footer-left">
-            <h3>F00d3zz</h3>
-            <p class="footer-links">
-                <a href="{% url 'Users-Home' %}">Home</a>
-                ·
-                <a href="{% url "blog:post_list" %}">Blog</a>
-                ·
-                <a href="#">About</a>
-                ·
-                <a href="#">Contact</a>
-            </p>
-
-      <p class="footer-company-name">Food3zz &copy; 2018</p>
-
-          <div class="footer-icons">
-
-          <a href="#"><i class="fa fa-facebook"></i></a>
-          <a href="#"><i class="fa fa-twitter"></i></a>
-          <a href="#"><i class="fa fa-github"></i></a>
-
-          </div>
-
-      </div>
-
-  </footer>
-
-<script type="text/javascript"  src="{% static 'Materialize/JS/materialize.js' %}"></script>
-</body>
-</html>
-
-
+  
+  
+  
+  
   <script src="https://code.jquery.com/jquery-2.1.1.js"></script>
 
   <script>
 		$("#new").click(function() {
-			$("#section-padding").css("visibility","visible");
+			$("#section-padding").css("visibility","visible");			
 		})
-
+			
 		/*$("#done").click(function() {
 			$("#order").slideUp(200);
 			$("#order").css("visibility","hidden");
-
+			
 		})*/
-
-		$("#add").click(function() {
+		
+		$("#add").click(function() {		
 			$("#section-padding").slideUp(200);
 			$("#section-padding").slideDown(200);
-			$("#section-padding").css("visibility","hidden");
+			$("#section-padding").css("visibility","hidden");						
 		})
 
   </script>

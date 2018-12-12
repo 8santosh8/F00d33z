@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from . import decorators
-from .models import RestaurantItems,RestaurantLog, Orders
+from .models import RestaurantItems,RestaurantLog
+from payments.models import Orders
 from django.shortcuts import redirect
 from django.contrib import messages
+from gpstrack.models import Driver
 
 @decorators.HotelUser
 def Home(request):
@@ -63,3 +65,16 @@ def AddItem(request):
 
     else:
         return redirect('Hotel-ItemView')
+
+def AssignDelivery(request):
+    driver = Driver.objects.filter(deliveryid=request.POST['deliveryid']).first()
+    if driver:
+        if driver.restid == RestaurantLog.objects.filter(manager=request.user).first():
+            Orders.objects.filter(orderid=request.POST['orderid']).update(deliveryid=request.POST['deliveryid'], status='OutForDelivery')
+
+        else:
+            messages.error(request,f'Select your own driver')
+
+    else:
+        messages.error(request,f'Driver does not exist')
+    return redirect('Hotel-ItemView')

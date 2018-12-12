@@ -21,4 +21,7 @@ urlpatterns = [
     path('',include('Users.urls')),
     path('admin/', admin.site.urls),
     path('Hotel/',include('Hotel.urls')),
+    path('payments/', include('payments.urls')),
+    path('gpstrack/',include('gpstrack.urls')),
+    path('Paypal/', include('Paypal.urls')),
 ]

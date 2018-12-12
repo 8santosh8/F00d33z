@@ -27,14 +27,3 @@ class RestaurantItems(models.Model):
 
     def __str__(self):
         return self.foodname
-
-class Orders(models.Model):
-    orderid = models.CharField(max_length=12)
-    customerid=models.ForeignKey(User, on_delete=models.CASCADE)
-    restaurantid=models.ForeignKey(RestaurantLog, on_delete=models.CASCADE)
-    deliveryid=models.CharField(max_length=12)
-    foodname=models.CharField(max_length=150)
-    quantity=models.CharField(max_length=4)
-    price=models.CharField(max_length=5)
-    date=models.DateTimeField(default=datetime.now, blank=True)
-    status=models.CharField(max_length=150)
