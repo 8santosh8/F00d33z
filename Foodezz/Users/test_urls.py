@@ -300,3 +300,20 @@ class RestLoginUrlTest(TestCase):
         response = self.client.get(self.request_url+'aksdfkj')
 
         self.assertEqual(response.status_code,404)
+
+class HomeUrlTest(TestCase):
+    def setUp(self):
+        self.request_url = '/'
+        self.client = None
+
+    def test_home(self):
+        self.client = Client()
+        response = self.client.get(self.request_url)
+
+        self.assertEqual(response.status_code,200)
+
+    def test_homeRandom(self):
+        self.client = Client()
+        response = self.client.get(self.request_url+'asdfjh')
+
+        self.assertEqual(response.status_code,404)
