@@ -120,7 +120,7 @@
 
 		<div class="food-menu" style="background-color:#A9A9A9">
 
-         <form method="POST" action="">
+         <form method="POST" action="{% url 'Hotel-AssignDelivery' %}">
          {% csrf_token %}
              {% for order in orders %}
 
