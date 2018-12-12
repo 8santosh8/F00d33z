@@ -12,7 +12,7 @@ def result(request):
     if Driver.objects.filter(deliveryid=driverid):
         lat = request.POST.get('lat')
         long = request.POST.get('long')
-        Driver.objects.update(deliveryid=driverid,lat=lat,long=long, lastupdate=timezone.now())
+        Driver.objects.filter(deliveryid=driverid).update(lat=lat,long=long, lastupdate=timezone.now())
         return HttpResponse("thank you for filling the form")
     else:
         return HttpResponse("check your id : ")

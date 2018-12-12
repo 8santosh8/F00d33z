@@ -28,23 +28,13 @@
   <!--banner-->
   <ul class="nav">
       <li id="settings">
-          <a href="{% url 'Users-Home' %}"><img src="{% static 'Login/Media/123.png' %}" height=100px width=200px/></a>
-      </li>
-      <li>
-          <a href="#">About Us</a>
-      </li>
-      <li id="search">
-          <form action="" method="get">
-              <input type="text" name="search_text" id="search_text" placeholder="Search"/>
-              <input type="button" name="search_button" id="search_button"></a>
-          </form>
+          <a href="{% url 'Hotel-ItemView' %}"><img src="{% static 'Login/Media/123.png' %}" height=100px width=200px/></a>
       </li>
       {% if user.is_authenticated %}
           <div class="right">
               <li id="options">
                   <a href="#">Hi ,{{ user.username }}</a>
                   <ul class="subnav">
-                      <li><a href="#">My Cart</a></li>
                       <li><a href="{% url 'Users-Profile' user.username %}">Profile</a></li>
                       <li><a href="{% url 'Users-ChangePassword' %}">Change password</li>
                       <li><a href="{% url 'Users-Logout' %}">Logout</a></li>
@@ -242,7 +232,7 @@
   <!----add new--->
 
 
-  <section id="section-padding" style="margin-left:0px;visibility:hidden;margin-bottom:40px;background-color:#ffffff;width:100%;">
+  <!-- <section id="section-padding" style="margin-left:0px;visibility:hidden;margin-bottom:40px;background-color:#ffffff;width:100%;">
 	<div class="row" style="margin-left:10%;">
 		<div class="add" style="position:sticky;top:0;color:black;">
             <span style="font-family:Andika;margin-left:1%;font-size:20px"><u>Food Item</u></span>
@@ -259,7 +249,7 @@
 			<button class="add" id="add" style="background:transparent;border-radius:5px;border:1px solid">Add Item</button>
         </div>
 	</div>
-  </section>
+  </section> -->
 
   <!--/add new--->
 

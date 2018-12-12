@@ -18,5 +18,8 @@ urlpatterns=[
     path('makeorderconfirm', views.makeorderconfirm, name='makeorderconfirm'),
     path('makeprev', views.makeprev, name='makeprev'),
     path('feedback', views.feedback, name='feedback'),
-    path('feedbackthanks', views.feedbackthanks, name='feedbackthanks')
+    path('feedbackthanks', views.feedbackthanks, name='feedbackthanks'),
+    path('hotel/apiview/',views.HotelAPIView.as_view()),
+    path('menu/apiview/',views.MenuAPIView.as_view()),
+    path('customer/apiview/',views.CustomerOrdersAPIView.as_view()),
 ]

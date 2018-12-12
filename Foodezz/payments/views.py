@@ -11,6 +11,8 @@ from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.conf import settings
 from django.template.loader import render_to_string
+from rest_framework import generics
+from .serializer import HotelSerializer,MenuSerializer,CustomerSerializer
 
 
 def search(request):
@@ -248,3 +250,32 @@ def makerestupdate(request):
 def restorder(request):
     Orders.objects.filter(orderid=request.POST['orderid']).update(deliveryid=request.POST['deliveryid'], status='OutForDelivery')
     return makerestupdate(request)
+
+class HotelAPIView(generics.ListAPIView):
+    serializer_class=HotelSerializer
+    def get_queryset(self):
+        qs = RestaurantLog.objects.all()
+        query = self.request.GET.get("q")
+        if query is not None:
+            qs = qs.filter(city=query)
+        return qs
+
+class MenuAPIView(generics.ListAPIView):
+    serializer_class=MenuSerializer
+    def get_queryset(self):
+        qs = RestaurantItems.objects.all()
+        query = self.request.GET.get("q")
+        if query is not None:
+            rest_id=RestaurantLog.objects.get(name=query).id
+            qs = qs.filter(restaurantid=rest_id)
+        return qs
+
+class CustomerOrdersAPIView(generics.ListAPIView):
+    serializer_class=CustomerSerializer
+    def get_queryset(self):
+        qs = Orders.objects.all()
+        query = self.request.GET.get("q")
+        if query is not None:
+            customer_id=User.objects.get(username=query).id
+            qs = qs.filter(customerid=customer_id)
+        return qs

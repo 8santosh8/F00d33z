@@ -1,6 +1,4 @@
-{% extends 'Users/Base.html' %}
-{% load crispy_forms_tags %}
-{% load widget_tweaks %}
+{% extends 'Hotel/Base.html' %}
 {% load staticfiles %}
 
 {% block head %}
@@ -16,20 +14,29 @@
          {% csrf_token %}
          <input type="text" name="restaurantname" value="{{ rest }}" readonly><br>
          food name:<input type="text" name="foodname"><br>
-         type:<select name="type">
+         <!-- type:<radio name="type">
              <option value="veg">veg</option>
              <option value="non-veg">non-veg</option>
-         </select><br>
-         category:<select name="category">
+         </select><br> -->
+         <label>Type:</label>:
+         <input type="radio" name="type" value="veg">Veg
+         <input type="radio" name="type" value="non-veg">Non-veg<br>
+         <!-- category:<select name="category">
             <option value="starter">starter</option>
             <option value="soup">soup</option>
             <option value="main course">main course</option>
             <option value="dessert">dessert</option>
             <option value="beverages">beverages</option>
-         </select><br>
+         </select><br> -->
+         <label>category</label>
+         <input type="radio" name="category" value="starter">starter
+         <input type="radio" name="category" value="soup">soup
+         <input type="radio" name="category" value="main_course">main_course
+         <input type="radio" name="category" value="dessert">dessert
+         <input type="radio" name="category" value="beverages">beverages<br>
          price:<input type="number" name="price"><br>
          avaialability<input type="number" name="availability"><br>
-         image<input type="file" name="foodimage" accept="image/*"><br>
+         image<input type="file" name="foodimage" accept="image/*"><br><br>
          <input type="submit" value="create">
      </form>
 </div>

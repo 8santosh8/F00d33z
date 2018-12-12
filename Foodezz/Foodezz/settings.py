@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'gpstrack',
     'paypal.standard.ipn',
     'testing',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
