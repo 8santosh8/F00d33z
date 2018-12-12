@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .models import CustomerLog, RestaurantLog, CustomerCart, RestaurantItems, Orders
 from gpstrack import views as gps
-
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -67,7 +67,7 @@ def showrestaurant(request, restaurant):
     data={'food':data1, 'rest':restaurant}
     return render(request, 'payments/foodselection.html', data)
 
-
+@login_required
 def pay(request):
     quantity=request.POST['quantity']
     buyoradd=request.POST['button']
@@ -100,7 +100,7 @@ def pay(request):
     data = {'food': data1, 'rest': restaurant}
     return render(request, 'payments/foodselection.html', data)
 
-
+@login_required
 def mycart(request):
     button=request.POST['button']
     food = request.POST['food_id']
@@ -129,7 +129,7 @@ def makebuynow(request):
     data={'food':fooddata,'rest':restdata}
     return render(request, 'payments/buynow.html', data)
 
-#used
+@login_required
 def makeorderconfirm(request):
     # cust_id=CustomerLog.objects.get(pk=request.session['customer_id'])
     if request.user.is_authenticated:
@@ -141,9 +141,9 @@ def makeorderconfirm(request):
 
 #used
 def orderconfirm(request,state,orderid):
-    if state=='track':
-        driver=Orders.objects.get(orderid=orderid)
-        return gps.map(request, driver.deliveryid)
+    # if state=='track':
+    driver=Orders.objects.get(orderid=orderid)
+    return gps.map(request, driver.deliveryid)
 
 
 

@@ -11,6 +11,8 @@ from django.template.loader import render_to_string
 from django.forms import modelformset_factory
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+
 def post_list(request):
 	post_list = Post.published.all()
 	query = request.GET.get('q')
@@ -96,7 +98,7 @@ def like_post(request):
 		post.likes.remove(request.user)
 		is_liked = False
 	else:
-		post.likes.add(request.user)
+		post.likes.add(request.user)	
 		is_liked = True
 	context = {
 		'post': post,
@@ -106,6 +108,8 @@ def like_post(request):
 	if(request.is_ajax()):
 		html = render_to_string('blog/like_section.html', context, request=request)
 		return JsonResponse({'form':html})
+
+@login_required
 def post_create(request):
 	ImageFormset = modelformset_factory(Images, fields=('image',))
 	if(request.method == 'POST'):

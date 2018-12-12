@@ -204,3 +204,4 @@ def ChangePassword(request):
     else:
         ChangePassForm = forms.ChangePasswordform()
     return render(request,'Users/ChangePassword.html',{'ChangePassForm':ChangePassForm})
+
