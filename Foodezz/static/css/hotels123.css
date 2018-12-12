@@ -95,7 +95,6 @@ ol, ul {
 	background:transparent;
 	font-family: Amarante;
     letter-spacing: 1px;
-	border: 1px solid #FFB03B;
 	border-radius:50px;
 }
 
@@ -124,7 +123,6 @@ ol, ul {
     font-family: Amarante;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: #FFB03B;
 }
 .menu-restaurant .menu-line {
     position: absolute;

@@ -5,8 +5,7 @@ from . import views
 app_name = "payments"
 
 urlpatterns=[
-    path('',views.restaurantselection,name='restaurantselection'),
-    path('foodselection',views.foodselection,name='foodselection'),
+    path('search',views.search,name='search'),
     path('pay',views.pay,name='pay'),
     path('restupdate',views.restupdate,name='restupdate'),
     path('newitem',views.newitem,name='newitem'),
@@ -17,4 +16,5 @@ urlpatterns=[
     path('locaterestaurants/<location>', views.locaterestaurants, name='locaterestaurants'),
     path('showrestaurant/<restaurant>', views.showrestaurant, name='showrestaurant'),
     path('makeorderconfirm', views.makeorderconfirm, name='makeorderconfirm'),
+    path('makeprev', views.makeprev, name='makeprev'),
 ]
