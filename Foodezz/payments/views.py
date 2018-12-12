@@ -87,7 +87,7 @@ def pay(request):
         order_id=str(orderid)
         price=int(RestaurantItems.objects.get(restaurantid=rest_id, foodname=foodname).price)*int(quantity)
         Orders.objects.create(orderid=order_id,customerid=customer_id,restaurantid=rest_id,foodname=foodname,quantity=quantity,price=price,status='SentToRestaurant')
-
+        
     data1 = RestaurantItems.objects.filter(restaurantid=rest_id)
     restaurant = request.session['rest_name']
     data = {'food': data1, 'rest': restaurant}
