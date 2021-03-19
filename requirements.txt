@@ -7,7 +7,7 @@ django-materialize==1.0.1a2
 django-mysql==2.4.1
 django-paypal==0.5.0
 django-widget-tweaks==1.4.3
-djangorestframework==3.9.0
+djangorestframework==3.11.2
 idna==2.7
 mysql-connector-python==8.0.13
 oauthlib==2.1.0
